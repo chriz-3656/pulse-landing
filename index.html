@@ -34,9 +34,7 @@
   <header>
     <div class="container nav-container">
       <a href="#" class="logo-link">
-        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M3 12h4l3-8 4 16 3-8h4"/>
-        </svg>
+        <img src="assets/app_icon.png" alt="Pulse Logo" class="logo-icon" style="border-radius: 20%; object-fit: cover;">
         PULSE
       </a>
       
@@ -87,8 +85,15 @@
             <a href="#features" class="btn btn-secondary">EXPLORE FEATURES</a>
           </div>
           
+          <div class="github-stats-container" style="margin-top: 15px; display: flex; gap: 15px; align-items: center;">
+            <a class="github-button" href="https://github.com/chriz-3656/Pulse-Music" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star chriz-3656/Pulse-Music on GitHub">Star</a>
+            <a class="github-button" href="https://github.com/chriz-3656/Pulse-Music/fork" data-icon="octicon-repo-forked" data-size="large" data-show-count="true" aria-label="Fork chriz-3656/Pulse-Music on GitHub">Fork</a>
+            <script async defer src="https://buttons.github.io/buttons.js"></script>
+          </div>
+
           <div class="hero-metadata mono">
             <div class="metadata-item">ANDROID</div>
+            <div class="metadata-item" id="download-count">0 DOWNLOADS</div>
             <div class="metadata-item">MEDIA3</div>
             <div class="metadata-item">OFFLINE</div>
             <div class="metadata-item">HI-FI EXPERIENCE</div>
@@ -374,6 +379,16 @@
             <h4>Audio controls</h4>
             <p>Shuffle, repeat, seeking, crossfade, and essential playback controls.</p>
           </div>
+          <div class="feature-item">
+            <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"></path><polyline points="21 3 21 8 16 8"></polyline></svg>
+            <h4>Seamless Updates</h4>
+            <p>In-app auto updater seamlessly fetches and installs the latest releases from GitHub.</p>
+          </div>
+          <div class="feature-item">
+            <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            <h4>Dynamic Engine</h4>
+            <p>Built with Jetpack Compose & Media3 for a resilient and robust architecture.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -490,7 +505,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="#" class="logo-link">
-            <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>
+            <img src="assets/app_icon.png" alt="Pulse Logo" class="logo-icon" style="border-radius: 20%; object-fit: cover;">
             PULSE
           </a>
           <p>Music beyond silence.</p>

@@ -36,6 +36,12 @@ async function fetchLatestRelease() {
           el.textContent = data.tag_name;
         });
         
+        // Update total downloads indicator
+        const downloadCountEl = document.getElementById('download-count');
+        if (downloadCountEl && apkAsset.download_count !== undefined) {
+           downloadCountEl.textContent = `${apkAsset.download_count} DOWNLOADS`;
+        }
+        
         // You can also add the tag name to the download button text
         const mainDownloadBtn = document.getElementById('bottom-download-btn');
         if (mainDownloadBtn) {
