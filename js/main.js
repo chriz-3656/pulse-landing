@@ -4,7 +4,7 @@
 
 // Configuration Constants
 const CONFIG = {
-  DOWNLOAD_URL: "https://github.com/chriz-3656/Pulse-Music/releases/download/v1.1.0/PulseMusic-v1.1.0.apk",
+  DOWNLOAD_URL: "https://github.com/chriz-3656/Pulse-Music/releases/download/v1.3.0/PulseMusic-v1.3.0.apk",
   GITHUB_URL: "https://github.com/chriz-3656/Pulse-Music"
 };
 
@@ -49,7 +49,9 @@ async function fetchDeveloperInfo() {
  */
 async function fetchLatestRelease() {
   try {
-    const response = await fetch('https://api.github.com/repos/chriz-3656/Pulse-Music/releases/latest');
+    // Adding a timestamp to prevent aggressive browser caching of the GitHub API response
+    const cacheBuster = new Date().getTime();
+    const response = await fetch(`https://api.github.com/repos/chriz-3656/Pulse-Music/releases/latest?t=${cacheBuster}`);
     if (response.ok) {
       const data = await response.json();
       const apkAsset = data.assets.find(asset => asset.name.endsWith('.apk') && !asset.name.includes('-debug'));
