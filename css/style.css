@@ -876,3 +876,65 @@ footer {
     scroll-behavior: auto !important;
   }
 }
+
+/* Developer Section */
+.developer-card {
+  display: flex;
+  background: var(--recessed);
+  border: 1px solid var(--chrome-dark);
+  border-radius: 16px;
+  padding: 32px;
+  gap: 32px;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.dev-avatar-wrapper {
+  flex-shrink: 0;
+}
+
+.dev-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 2px solid var(--amber);
+  object-fit: cover;
+  box-shadow: 0 0 20px rgba(255, 179, 0, 0.2);
+}
+
+.dev-info h3 {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+
+.dev-bio {
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+.dev-stats {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 24px;
+  font-size: 0.9rem;
+}
+
+.dev-stat span {
+  color: var(--amber);
+  font-weight: bold;
+  font-size: 1.2rem;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .developer-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .dev-stats {
+    justify-content: center;
+  }
+}

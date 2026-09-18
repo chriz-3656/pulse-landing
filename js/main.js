@@ -15,7 +15,34 @@ document.addEventListener('DOMContentLoaded', () => {
   initFooterYear();
   setupLinks();
   fetchLatestRelease();
+  fetchDeveloperInfo();
 });
+
+/**
+ * Fetch developer profile from GitHub
+ */
+async function fetchDeveloperInfo() {
+  try {
+    const response = await fetch('https://api.github.com/users/chriz-3656');
+    if (response.ok) {
+      const data = await response.json();
+      
+      const avatarEl = document.getElementById('dev-avatar');
+      const nameEl = document.getElementById('dev-name');
+      const bioEl = document.getElementById('dev-bio');
+      const reposEl = document.getElementById('dev-repos');
+      const followersEl = document.getElementById('dev-followers');
+      
+      if (avatarEl) avatarEl.src = data.avatar_url;
+      if (nameEl) nameEl.textContent = data.name || data.login;
+      if (bioEl && data.bio) bioEl.textContent = data.bio;
+      if (reposEl) reposEl.textContent = data.public_repos;
+      if (followersEl) followersEl.textContent = data.followers;
+    }
+  } catch (error) {
+    console.error('Failed to fetch developer info:', error);
+  }
+}
 
 /**
  * Fetch latest release from GitHub
