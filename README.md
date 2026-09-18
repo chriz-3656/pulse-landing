@@ -8,6 +8,8 @@ A complete, production-quality responsive landing website for "PULSE MUSIC", a m
 - Hi-Fi / Analog Audio Aesthetic
 - No frameworks used (No React, Tailwind, Bootstrap)
 - Lightweight & Fast
+- **Dynamic Download Tracker**: Automatically fetches the latest APK and exact download count using the GitHub Releases API.
+- **Live Developer Fetching**: Pulls live developer profile data directly from GitHub.
 
 ## Structure
 ```
