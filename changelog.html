@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Changelog — Pulse Music</title>
+  <meta name="theme-color" content="#080808">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23FFB300'/><path d='M20 50h15l10-25 15 50 10-25h10' stroke='%23080808' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+  
+  <!-- Marked.js for Markdown parsing -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <style>
+    .legal-content {
+      padding-top: calc(var(--nav-height) + 64px);
+      padding-bottom: 64px;
+      min-height: 80vh;
+    }
+    .changelog-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .changelog-container h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 16px;
+    }
+    .changelog-container .subtitle {
+      color: var(--text-secondary);
+      margin-bottom: 48px;
+      display: block;
+      font-size: 1.1rem;
+    }
+    
+    /* Timeline Styles */
+    .timeline {
+      position: relative;
+      padding-left: 32px;
+      border-left: 2px solid var(--surface-light);
+    }
+    .release-block {
+      position: relative;
+      margin-bottom: 48px;
+    }
+    .release-block::before {
+      content: '';
+      position: absolute;
+      left: -41px;
+      top: 6px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--amber);
+      border: 4px solid var(--background);
+    }
+    
+    .release-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .release-version {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .release-date {
+      font-family: var(--font-mono);
+      color: var(--amber);
+      font-size: 0.875rem;
+    }
+    
+    .release-content h3 {
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-top: 24px;
+      margin-bottom: 12px;
+    }
+    .release-content ul {
+      padding-left: 20px;
+      color: var(--text-secondary);
+    }
+    .release-content li {
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+    .release-content li strong {
+      color: var(--text);
+    }
+    
+    /* Loading state */
+    .loader {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      border: 3px solid rgba(255, 179, 0, 0.3);
+      border-radius: 50%;
+      border-top-color: var(--amber);
+      animation: spin 1s ease-in-out infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="container nav-container">
+      <a href="index.html" class="logo-link">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 12h4l3-8 4 16 3-8h4"/>
+        </svg>
+        PULSE
+      </a>
+      <nav class="nav-links">
+        <a href="index.html#hero">Home</a>
+        <a href="index.html#features">Features</a>
+        <a href="index.html#player">Player</a>
+        <a href="index.html#library">Library</a>
+        <a href="index.html#download">Download</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="#" class="btn btn-secondary" id="nav-github-btn">GitHub</a>
+        <a href="index.html#download" class="btn btn-primary btn-download">Download</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="legal-content">
+    <div class="changelog-container reveal">
+      <h1>Changelog</h1>
+      <span class="subtitle">All notable updates and new features added to Pulse Music.</span>
+      
+      <div id="changelog-content">
+        <div style="text-align:center; padding: 48px 0;">
+          <div class="loader"></div>
+          <p style="margin-top: 16px; color: var(--text-secondary);">Fetching latest updates from GitHub...</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo-link">
+            <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>
+            PULSE
+          </a>
+          <p>Music beyond silence.</p>
+        </div>
+        <div class="footer-links">
+          <h5>NAVIGATION</h5>
+          <ul>
+            <li><a href="index.html#hero">Home</a></li>
+            <li><a href="changelog.html">Changelog</a></li>
+            <li><a href="index.html#download">Download</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5>LINKS</h5>
+          <ul>
+            <li><a href="#" id="footer-github-link">GitHub</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <div>
+          &copy; <span id="current-year"></span> Pulse Music. All rights reserved.<br>
+        </div>
+        <div class="footer-tech">
+          Pulse Music <span class="app-version">v1.4.1</span><br>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const container = document.getElementById('changelog-content');
+      
+      try {
+        const response = await fetch('https://raw.githubusercontent.com/chriz-3656/Pulse-Music/main/CHANGELOG.md');
+        if (!response.ok) throw new Error('Failed to fetch changelog');
+        const text = await response.text();
+        
+        // Parse the markdown
+        const htmlContent = marked.parse(text);
+        
+        // Create a temporary div to manipulate the HTML
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = htmlContent;
+        
+        // Remove the top headers (like # Changelog and intro text)
+        const toRemove = [];
+        for (let child of tempDiv.children) {
+          if (child.tagName === 'H1' || child.tagName === 'P' || child.tagName === 'HR') {
+            toRemove.push(child);
+          } else if (child.tagName === 'H2' && child.textContent.includes('Unreleased')) {
+            toRemove.push(child);
+          } else {
+            break; // Stop removing once we hit the first real release H2
+          }
+        }
+        toRemove.forEach(el => el.remove());
+        
+        // Now restructure into timeline blocks
+        const timelineWrapper = document.createElement('div');
+        timelineWrapper.className = 'timeline';
+        
+        let currentBlock = null;
+        let currentContent = null;
+        
+        Array.from(tempDiv.children).forEach(el => {
+          if (el.tagName === 'H2') {
+            // New Release Block
+            currentBlock = document.createElement('div');
+            currentBlock.className = 'release-block';
+            
+            const header = document.createElement('div');
+            header.className = 'release-header';
+            
+            // Extract version and date from "## [1.4.1] - 2026-09-20"
+            const match = el.textContent.match(/\[(.*?)\](?: - (.*))?/);
+            
+            const versionSpan = document.createElement('span');
+            versionSpan.className = 'release-version';
+            versionSpan.textContent = match ? `v${match[1]}` : el.textContent;
+            
+            const dateSpan = document.createElement('span');
+            dateSpan.className = 'release-date';
+            dateSpan.textContent = match && match[2] ? match[2] : '';
+            
+            header.appendChild(versionSpan);
+            header.appendChild(dateSpan);
+            currentBlock.appendChild(header);
+            
+            currentContent = document.createElement('div');
+            currentContent.className = 'release-content';
+            currentBlock.appendChild(currentContent);
+            
+            timelineWrapper.appendChild(currentBlock);
+          } else if (currentContent && el.tagName !== 'HR') {
+            currentContent.appendChild(el.cloneNode(true));
+          }
+        });
+        
+        container.innerHTML = '';
+        container.appendChild(timelineWrapper);
+        
+      } catch (err) {
+        console.error(err);
+        container.innerHTML = `<p style="color:var(--peak-red);">Failed to load changelog. Please check GitHub directly.</p>`;
+      }
+    });
+  </script>
+</body>
+</html>
