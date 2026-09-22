@@ -4,7 +4,7 @@
 
 // Configuration Constants
 const CONFIG = {
-  DOWNLOAD_URL: "https://github.com/chriz-3656/Pulse-Music/releases/download/v1.4.1/PulseMusic-v1.4.1.apk",
+  DOWNLOAD_URL: "https://github.com/chriz-3656/Pulse-Music/releases/download/v2.0.0/PulseMusic-v2.0.0.apk",
   GITHUB_URL: "https://github.com/chriz-3656/Pulse-Music"
 };
 
