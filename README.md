@@ -12,7 +12,7 @@ A complete, production-quality responsive landing website for "PULSE MUSIC", a m
 - **Live Developer Fetching**: Pulls live developer profile data directly from GitHub.
 
 ## Pulse Music App Status
-**Current Version:** v2.1.1 (Includes recent fixes for global 0:00 track duration bugs, HLS ExoPlayer polling, and `ytm-kt` JSON parsing fallbacks).
+**Current Version:** v2.1.3 (Includes recent fixes for global 0:00 track duration bugs, HLS ExoPlayer polling, and `ytm-kt` JSON parsing fallbacks).
 
 ## Structure
 ```
