@@ -254,7 +254,7 @@ function initFooterYear() {
  * Setup configurable links
  */
 function setupLinks() {
-  const downloadLinks = document.querySelectorAll('.btn-download, #bottom-download-btn, [href="#download"]');
+  const downloadLinks = document.querySelectorAll('.btn-download, #bottom-download-btn');
   const githubLinks = document.querySelectorAll('#nav-github-btn, #mobile-github-btn, #bottom-github-btn, #footer-github-link');
   
   downloadLinks.forEach(link => {
