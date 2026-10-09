@@ -5,7 +5,7 @@ Pulse Music is a modern, open-source Android music player featuring a Neumorphic
 - **Pulse JAM:** Real-time synchronized music rooms for remote listening. Hosts control playback, guests can vote skip, and ExoPlayer timestamp drift is auto-corrected.
 - **Dual Engine:** Fetches audio streams and metadata from JioSaavn and YouTube Music (via ytm-kt).
 - **Design:** Skeuomorphic UI elements like analog VU meters, LED lamps, and tactile buttons.
-- **Version:** Currently v2.5.1
+- **Version:** Currently v2.5.2
 - **Platform:** Android (v2.5.x)
 - **Repository:** https://github.com/chriz-3656/Pulse-Music
 
