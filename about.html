@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>About Pulse Music — Philosophy, Architecture & Hardware Aesthetic</title>
+  <meta name="description" content="Discover Pulse Music: a passionate open-source Android music streaming player featuring analog skeuomorphic UI, multi-source aggregation, pure offline mode, and zero tracking.">
+  <meta name="theme-color" content="#080808">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
+  
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23FFB300'/><path d='M20 50h15l10-25 15 50 10-25h10' stroke='%23080808' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+
+  <script>
+    (function() {
+      try {
+        if (window.location.pathname.endsWith('.html')) {
+          var clean = window.location.pathname.replace(/\/index\.html$/, '/').replace(/\.html$/, '');
+          window.history.replaceState(null, '', clean + window.location.search + window.location.hash);
+        }
+      } catch(e) {}
+    })();
+  </script>
+
+  <style>
+    .about-page {
+      padding-top: calc(var(--nav-height) + 48px);
+      padding-bottom: 80px;
+    }
+    .about-hero {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto 64px auto;
+      padding: 0 24px;
+    }
+    .about-badge {
+      display: inline-block;
+      background: rgba(255, 179, 0, 0.12);
+      border: 1px solid var(--amber);
+      color: var(--amber);
+      padding: 6px 16px;
+      border-radius: var(--radius-full);
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+    .about-title {
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      margin-bottom: 20px;
+      line-height: 1.15;
+    }
+    .about-lead {
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+    
+    .specs-ribbon {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .spec-pill {
+      background: var(--surface);
+      border: 1px solid var(--surface-light);
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .spec-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--vu-green);
+      box-shadow: 0 0 8px var(--vu-green);
+    }
+
+    .about-section {
+      max-width: 1100px;
+      margin: 0 auto 80px auto;
+      padding: 0 24px;
+    }
+    .section-intro {
+      text-align: center;
+      max-width: 750px;
+      margin: 0 auto 48px auto;
+    }
+    .section-intro h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      margin-bottom: 16px;
+    }
+    .section-intro p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+    }
+
+    /* Philosophy Split Grid */
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: stretch;
+    }
+    .phil-card {
+      background: var(--surface);
+      border: 1px solid var(--surface-light);
+      border-radius: 16px;
+      padding: 36px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+    .phil-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--surface-light);
+    }
+    .phil-card.highlight::before {
+      background: linear-gradient(90deg, var(--amber), #FF8F00);
+    }
+    .phil-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .phil-card p {
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 16px;
+      font-size: 1rem;
+    }
+    .phil-card ul {
+      color: var(--text-secondary);
+      line-height: 1.8;
+      padding-left: 20px;
+    }
+    .phil-card li {
+      margin-bottom: 8px;
+      list-style-type: square;
+    }
+    .phil-card li strong {
+      color: var(--text);
+    }
+
+    /* Deck Feature Cards */
+    .deck-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+    .deck-card {
+      background: linear-gradient(145deg, #181818 0%, #101010 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.05), 0 12px 24px rgba(0, 0, 0, 0.4);
+      transition: transform var(--transition-normal), border-color var(--transition-normal);
+    }
+    .deck-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 179, 0, 0.4);
+    }
+    .deck-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .deck-icon-wrap {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(255, 179, 0, 0.1);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--amber);
+    }
+    .deck-code {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--amber);
+      background: rgba(255, 179, 0, 0.1);
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+    .deck-card h4 {
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    .deck-card p {
+      color: var(--text-secondary);
+      line-height: 1.6;
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+    }
+    .deck-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .deck-tag {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      background: #1e1e1e;
+      color: #ccc;
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid #333;
+    }
+
+    /* Architecture Table Card */
+    .tech-table-card {
+      background: var(--surface);
+      border: 1px solid var(--surface-light);
+      border-radius: 16px;
+      padding: 32px;
+      overflow-x: auto;
+    }
+    .tech-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    .tech-table th {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--amber);
+      padding: 16px 20px;
+      border-bottom: 2px solid var(--surface-light);
+      letter-spacing: 1px;
+    }
+    .tech-table td {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--surface-light);
+      font-size: 0.95rem;
+    }
+    .tech-table tr:last-child td {
+      border-bottom: none;
+    }
+    .tech-table td.col-component {
+      font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+    }
+    .tech-table td.col-tech {
+      font-family: var(--font-mono);
+      color: var(--amber);
+      font-size: 0.85rem;
+      white-space: nowrap;
+    }
+    .tech-table td.col-role {
+      color: var(--text-secondary);
+    }
+
+    /* CTA Section */
+    .about-cta {
+      background: linear-gradient(180deg, var(--surface) 0%, rgba(255, 179, 0, 0.08) 100%);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 56px 32px;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .about-cta h3 {
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      margin-bottom: 16px;
+    }
+    .about-cta p {
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 32px auto;
+      font-size: 1.05rem;
+    }
+    .about-cta-btns {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 768px) {
+      .philosophy-grid {
+        grid-template-columns: 1fr;
+      }
+      .about-cta-btns {
+        flex-direction: column;
+      }
+      .specs-ribbon {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .spec-pill {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="container nav-container">
+      <a href="index.html" class="logo-link">
+        <img src="assets/app_icon.png" alt="Pulse Logo" class="logo-icon" style="border-radius: 20%; object-fit: cover;">
+        PULSE
+      </a>
+      
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#features">Features</a>
+        <a href="about/" style="color: var(--amber); font-weight: 600;">About</a>
+        <a href="changelog/">Changelog</a>
+        <a href="index.html#player">Player</a>
+        <a href="index.html#library">Library</a>
+        <a href="index.html#download">Download</a>
+      </nav>
+      
+      <div class="nav-actions">
+        <a href="#" class="btn btn-secondary" id="nav-github-btn">GitHub</a>
+        <a href="index.html#download" class="btn btn-primary btn-download">Download</a>
+      </div>
+      
+      <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Nav -->
+  <nav class="mobile-nav">
+    <a href="index.html" class="mobile-link">Home</a>
+    <a href="index.html#features" class="mobile-link">Features</a>
+    <a href="about/" class="mobile-link" style="color: var(--amber); font-weight: 700;">About</a>
+    <a href="changelog/" class="mobile-link">Changelog</a>
+    <a href="index.html#player" class="mobile-link">Player</a>
+    <a href="index.html#library" class="mobile-link">Library</a>
+    <a href="#" class="mobile-link btn btn-secondary" id="mobile-github-btn">GitHub</a>
+  </nav>
+
+  <main class="about-page">
+    
+    <!-- Hero Header -->
+    <section class="about-hero reveal">
+      <span class="about-badge">ANALOG SOUL • MODERN ANDROID</span>
+      <h1 class="about-title">Music Beyond <span class="text-amber">Silence.</span></h1>
+      <p class="about-lead">
+        Pulse Music is an uncompromising, open-source Android music streaming player engineered with tactile Skeuomorphic hardware aesthetics, multi-source stream aggregation, pure offline sovereignty, and collaborative live listening.
+      </p>
+
+      <div class="specs-ribbon">
+        <div class="spec-pill">
+          <span class="spec-dot"></span>
+          <span>STABLE RELEASE: <strong>v2.7.0</strong></span>
+        </div>
+        <div class="spec-pill">
+          <span class="spec-dot"></span>
+          <span>100% OPEN SOURCE & ZERO ADS</span>
+        </div>
+        <div class="spec-pill">
+          <span class="spec-dot"></span>
+          <span>ANDROID 7.0+ (API 24+)</span>
+        </div>
+        <div class="spec-pill">
+          <span class="spec-dot"></span>
+          <span>PURE OFFLINE FLIGHT ENGINE</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- The Genesis & Philosophy -->
+    <section class="about-section reveal">
+      <div class="section-intro">
+        <span class="tech-label mono">THE PHILOSOPHY</span>
+        <h2>Why Pulse Music Was Built</h2>
+        <p>A rebellion against corporate algorithmic streaming apps that treat listeners like data points and music like background elevator noise.</p>
+      </div>
+
+      <div class="philosophy-grid">
+        <div class="phil-card">
+          <h3 style="color: #FF5252;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            The Modern Streaming Dilemma
+          </h3>
+          <p>
+            Today's mainstream music apps have lost their soul. They have transformed into noisy advertising engines crowded with video shorts, intrusive subscription walls, algorithmic homogeny, and flat gray-on-gray rectangles that feel more like spreadsheets than hi-fi equipment.
+          </p>
+          <ul>
+            <li><strong>Intrusive Surveillance:</strong> Continuous telemetry, location logging, and algorithmic profiling.</li>
+            <li><strong>Paywalled Basics:</strong> Charging recurring subscriptions for background playback, offline caching, and high-bitrate audio.</li>
+            <li><strong>Sterile Flat Design:</strong> Lifeless user interfaces devoid of physical tactility or emotional resonance.</li>
+            <li><strong>Walled Gardens:</strong> Restricting playback to proprietary containers and blocking direct file downloads.</li>
+          </ul>
+        </div>
+
+        <div class="phil-card highlight">
+          <h3 class="text-amber">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            The Pulse Music Antidote
+          </h3>
+          <p>
+            Pulse was built to restore reverence to the listening ritual. We combined the tactile, physical nostalgia of vintage high-end studio gear—vacuum-tube amber lighting, needle-dancing VU meters, recessed rotary dials, and beveled cassette decks—with lightning-fast native Kotlin architecture.
+          </p>
+          <ul>
+            <li><strong>Zero Tracking & No Accounts:</strong> No signups, zero telemetry SDKs, no targeted advertising. Your data never leaves your device.</li>
+            <li><strong>Tactile Skeuomorphism:</strong> Authentic hardware decks, LED peak meters, and analog volume pots drawn natively with Jetpack Compose.</li>
+            <li><strong>True Offline Freedom:</strong> Dedicated Pure Offline mode with one-tap batch album/playlist downloads and native disk caching.</li>
+            <li><strong>Unified Multi-Source:</strong> Stream and download freely across YouTube Music, JioSaavn (320kbps HD), and SoundCloud without walled gardens.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Architecture Deck -->
+    <section class="about-section reveal">
+      <div class="section-intro">
+        <span class="tech-label mono">ENGINEERING DECK</span>
+        <h2>Deep Architectural Features</h2>
+        <p>Built from the ground up for stability, audiophile acoustics, and complete listener autonomy.</p>
+      </div>
+
+      <div class="deck-grid">
+        <!-- Feature 1 -->
+        <div class="deck-card">
+          <div class="deck-header">
+            <div class="deck-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <span class="deck-code">MOD-01</span>
+          </div>
+          <h4>Multi-Source Stream Router</h4>
+          <p>
+            Aggregates global music catalogs across YouTube Music (via native ytm-kt), JioSaavn (320 kbps high-definition audio), and SoundCloud into a unified crate. Seed-provider affinity ensures that continuous radio sessions stick to your preferred provider with instant failover.
+          </p>
+          <div class="deck-tags">
+            <span class="deck-tag">YouTube Music</span>
+            <span class="deck-tag">JioSaavn 320k</span>
+            <span class="deck-tag">SoundCloud</span>
+            <span class="deck-tag">Provider Stickiness</span>
+          </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="deck-card">
+          <div class="deck-header">
+            <div class="deck-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            </div>
+            <span class="deck-code">MOD-02</span>
+          </div>
+          <h4>Pure Offline Engine & Queue</h4>
+          <p>
+            Hardware-style toggle cuts all cellular sockets for zero-latency airplane playback. The instant live download queue populates entire albums and playlists immediately with real-time byte-streaming progress indicators and per-task cancellation.
+          </p>
+          <div class="deck-tags">
+            <span class="deck-tag">✈️ Flight Mode</span>
+            <span class="deck-tag">Live Byte Progress</span>
+            <span class="deck-tag">Batch Album DL</span>
+            <span class="deck-tag">Room Caching</span>
+          </div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="deck-card">
+          <div class="deck-header">
+            <div class="deck-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <span class="deck-code">MOD-03</span>
+          </div>
+          <h4>Pulse JAM Sync Rooms</h4>
+          <p>
+            Real-time multi-listener room broadcasting powered by Firebase Realtime Database. Active timestamp drift auto-correction (&lt;150ms buffer sync) ensures host and guests listen in frame-accurate unison, accompanied by democratic 50% consensus vote-skipping.
+          </p>
+          <div class="deck-tags">
+            <span class="deck-tag">Sub-150ms Sync</span>
+            <span class="deck-tag">Firebase RTDB</span>
+            <span class="deck-tag">Collaborative Queue</span>
+            <span class="deck-tag">Vote-Skip</span>
+          </div>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="deck-card">
+          <div class="deck-header">
+            <div class="deck-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+            </div>
+            <span class="deck-code">MOD-04</span>
+          </div>
+          <h4>Audiophile Media3 Playback</h4>
+          <p>
+            Engineered on AndroidX Media3 ExoPlayer with dedicated foreground MediaSessionService lifecycles. CPU WakeLocks and WifiLocks guarantee that playback never stalls or skips during deep sleep, phone locks, or intensive multitasking.
+          </p>
+          <div class="deck-tags">
+            <span class="deck-tag">AndroidX Media3</span>
+            <span class="deck-tag">MediaSession</span>
+            <span class="deck-tag">WakeLock Active</span>
+            <span class="deck-tag">No Background Stalls</span>
+          </div>
+        </div>
+
+        <!-- Feature 5 -->
+        <div class="deck-card">
+          <div class="deck-header">
+            <div class="deck-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <span class="deck-code">MOD-05</span>
+          </div>
+          <h4>Time-Synced Teleprompter</h4>
+          <p>
+            Full-screen animated lyrics scroller that syncs line-by-line with acoustic timestamps. Warm glowing active lyric badges, fluid kinetic auto-scrolling, and instant distraction-free teleprompter viewing for stage or casual sing-alongs.
+          </p>
+          <div class="deck-tags">
+            <span class="deck-tag">Line-by-Line</span>
+            <span class="deck-tag">Kinetic Scroll</span>
+            <span class="deck-tag">Neumorphic Badges</span>
+            <span class="deck-tag">Teleprompter</span>
+          </div>
+        </div>
+
+        <!-- Feature 6 -->
+        <div class="deck-card">
+          <div class="deck-header">
+            <div class="deck-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+            <span class="deck-code">MOD-06</span>
+          </div>
+          <h4>Zero Telemetry & Local Sovereignty</h4>
+          <p>
+            No accounts, no user telemetry SDKs, no tracking cookies, and no analytical beacon calls. Your listening sessions, curated crates, and cached files live completely on your Android device backed by an encrypted Room SQLite database.
+          </p>
+          <div class="deck-tags">
+            <span class="deck-tag">100% Private</span>
+            <span class="deck-tag">No Accounts</span>
+            <span class="deck-tag">Zero Telemetry</span>
+            <span class="deck-tag">Room SQLite</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Specifications -->
+    <section class="about-section reveal">
+      <div class="section-intro">
+        <span class="tech-label mono">UNDER THE HOOD</span>
+        <h2>Technology Stack & Architecture</h2>
+        <p>Built with Modern Android Development (MAD) standards, clean separation of concerns, and robust automated testing.</p>
+      </div>
+
+      <div class="tech-table-card">
+        <table class="tech-table">
+          <thead>
+            <tr>
+              <th>LAYER / SUBSYSTEM</th>
+              <th>TECHNOLOGY</th>
+              <th>FUNCTION & PURPOSE</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-component">UI & Rendering</td>
+              <td class="col-tech">Jetpack Compose 1.7+ & Material 3</td>
+              <td class="col-role">Declarative reactive UI, custom Canvas analog VU meters, LED peak lamps, and skeuomorphic beveled deck components.</td>
+            </tr>
+            <tr>
+              <td class="col-component">Programming Language</td>
+              <td class="col-tech">Kotlin 2.0</td>
+              <td class="col-role">Strict null safety, high-performance coroutines, asynchronous flows, and reactive StateFlow state hoisting.</td>
+            </tr>
+            <tr>
+              <td class="col-component">Audio Streaming Core</td>
+              <td class="col-tech">AndroidX Media3 ExoPlayer 1.5.0</td>
+              <td class="col-role">Audiophile low-latency playback engine, dynamic stream source resolution, and headless MediaSessionService foreground lifecycles.</td>
+            </tr>
+            <tr>
+              <td class="col-component">Local Persistence</td>
+              <td class="col-tech">Room Database (SQLite) + SAF</td>
+              <td class="col-role">Reactive local caching of tracks, playlists, favorites, offline download tasks, and ID3 metadata storage.</td>
+            </tr>
+            <tr>
+              <td class="col-component">Multi-Source Engines</td>
+              <td class="col-tech">ytm-kt + JioSaavn + SoundCloud</td>
+              <td class="col-role">Direct stream resolution, dynamic audio link extraction, and fallback failover routing.</td>
+            </tr>
+            <tr>
+              <td class="col-component">Synchronized Rooms</td>
+              <td class="col-tech">Firebase Realtime Database</td>
+              <td class="col-role">Sub-150ms room state synchronizer, disconnect listener pruning, and democratic live vote-skip consensus.</td>
+            </tr>
+            <tr>
+              <td class="col-component">Continuous Playback</td>
+              <td class="col-tech">CPU WakeLocks & WifiLocks</td>
+              <td class="col-role">Guaranteed non-stop playback when screen turns off, preventing OS battery-saver killing.</td>
+            </tr>
+            <tr>
+              <td class="col-component">Cloud CI/CD & Delivery</td>
+              <td class="col-tech">GitHub Actions + Static Keystore</td>
+              <td class="col-role">Automated JVM testing, release APK packaging, cryptographic signature preservation, and automatic OTA updates.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Developer & Community Section -->
+    <section class="about-section reveal">
+      <div class="section-intro">
+        <span class="tech-label mono">CREATOR & MAINTAINER</span>
+        <h2>Crafted by chriz-3656</h2>
+        <p>Built with love for music, audio engineering, and the global open-source community.</p>
+      </div>
+
+      <div class="developer-card">
+        <div class="dev-avatar-wrapper">
+          <img id="dev-avatar" class="dev-avatar" src="assets/app_icon.png" alt="Developer Avatar">
+        </div>
+        <div class="dev-info">
+          <h3 id="dev-name">chriz-3656</h3>
+          <p id="dev-bio" class="dev-bio">Android engineer and audio enthusiast building high-fidelity open-source tools that bring tactility and privacy back to modern software.</p>
+          <div class="dev-stats mono">
+            <div class="dev-stat"><span id="dev-repos">-</span> Repos</div>
+            <div class="dev-stat"><span id="dev-followers">-</span> Followers</div>
+          </div>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <a href="https://github.com/chriz-3656" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">VIEW GITHUB PROFILE</a>
+            <a href="https://github.com/chriz-3656/Pulse-Music" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="background: transparent !important; color: var(--amber) !important; border: 2px solid var(--amber) !important;">PULSE MUSIC REPOSITORY</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="about-section reveal">
+      <div class="about-cta">
+        <span class="about-badge">JOIN THE SOUND</span>
+        <h3>Experience Music How It Was Meant To Be</h3>
+        <p>Download Pulse Music v2.7.0 today. No subscription, no advertisements, no tracking—just pure audiophile sound under your absolute control.</p>
+        <div class="about-cta-btns">
+          <a href="index.html#download" class="btn btn-primary btn-download">DOWNLOAD FOR ANDROID</a>
+          <a href="changelog/" class="btn btn-secondary">VIEW CHANGELOG</a>
+          <a href="https://github.com/chriz-3656/Pulse-Music" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" id="bottom-github-btn">GITHUB REPO</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo-link">
+            <img src="assets/app_icon.png" alt="Pulse Logo" class="logo-icon" style="border-radius: 20%; object-fit: cover;">
+            PULSE
+          </a>
+          <p>Music beyond silence.</p>
+        </div>
+        <div class="footer-links">
+          <h5>NAVIGATION</h5>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="about/">About</a></li>
+            <li><a href="changelog/">Changelog</a></li>
+            <li><a href="index.html#player">Player</a></li>
+            <li><a href="index.html#library">Library</a></li>
+            <li><a href="index.html#download">Download</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5>LINKS</h5>
+          <ul>
+            <li><a href="#" id="footer-github-link">GitHub</a></li>
+            <li><a href="privacy/">Privacy Policy</a></li>
+            <li><a href="terms/">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <div>
+          &copy; <span id="current-year"></span> Pulse Music. All rights reserved.<br>
+          <span style="color:var(--text-muted); font-size: 0.75rem; margin-top: 4px; display: inline-block;">
+            An open source 3rd party streaming app. Developed by <a href="https://github.com/chriz-3656" target="_blank" rel="noopener noreferrer" style="color:var(--amber); text-decoration:underline;">chriz-3656</a>.
+          </span>
+        </div>
+        <div class="footer-tech">
+          Pulse Music <span class="app-version">v2.7.0</span><br>
+          Android Music Client
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

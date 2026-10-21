@@ -8,7 +8,24 @@ const CONFIG = {
   GITHUB_URL: "https://github.com/chriz-3656/Pulse-Music"
 };
 
+/**
+ * Clean URL: automatically hide .html and /index.html in the address bar
+ */
+function cleanAddressBarUrl() {
+  try {
+    const loc = window.location;
+    if (loc.pathname.endsWith('.html') || loc.pathname.endsWith('/index.html')) {
+      const cleanPath = loc.pathname.replace(/\/index\.html$/, '/').replace(/\.html$/, '');
+      window.history.replaceState(null, '', cleanPath + loc.search + loc.hash);
+    }
+  } catch (e) {
+    // Graceful fallback for restricted environments
+  }
+}
+cleanAddressBarUrl();
+
 document.addEventListener('DOMContentLoaded', () => {
+  cleanAddressBarUrl();
   initNavigation();
   initScrollReveal();
   initVUMeter();

@@ -11,8 +11,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   
+  <!-- Favicon placeholder -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23FFB300'/><path d='M20 50h15l10-25 15 50 10-25h10' stroke='%23080808' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
   
+  <script>
+    (function() {
+      try {
+        if (window.location.pathname.endsWith('.html') || window.location.pathname.endsWith('/index.html')) {
+          var clean = window.location.pathname.replace(/\/index\.html$/, '/').replace(/\.html$/, '');
+          window.history.replaceState(null, '', clean + window.location.search + window.location.hash);
+        }
+      } catch(e) {}
+    })();
+  </script>
+
   <!-- Marked.js for Markdown parsing -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
@@ -117,14 +129,14 @@
   <header>
     <div class="container nav-container">
       <a href="index.html" class="logo-link">
-        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M3 12h4l3-8 4 16 3-8h4"/>
-        </svg>
+        <img src="assets/app_icon.png" alt="Pulse Logo" class="logo-icon" style="border-radius: 20%; object-fit: cover;">
         PULSE
       </a>
       <nav class="nav-links">
-        <a href="index.html#hero">Home</a>
+        <a href="index.html">Home</a>
         <a href="index.html#features">Features</a>
+        <a href="about/">About</a>
+        <a href="changelog/" style="color: var(--amber); font-weight: 600;">Changelog</a>
         <a href="index.html#player">Player</a>
         <a href="index.html#library">Library</a>
         <a href="index.html#download">Download</a>
@@ -133,8 +145,24 @@
         <a href="#" class="btn btn-secondary" id="nav-github-btn">GitHub</a>
         <a href="index.html#download" class="btn btn-primary btn-download">Download</a>
       </div>
+      <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </header>
+
+  <!-- Mobile Nav -->
+  <nav class="mobile-nav">
+    <a href="index.html" class="mobile-link">Home</a>
+    <a href="index.html#features" class="mobile-link">Features</a>
+    <a href="about/" class="mobile-link">About</a>
+    <a href="changelog/" class="mobile-link" style="color: var(--amber); font-weight: 700;">Changelog</a>
+    <a href="index.html#player" class="mobile-link">Player</a>
+    <a href="index.html#library" class="mobile-link">Library</a>
+    <a href="#" class="mobile-link btn btn-secondary" id="mobile-github-btn">GitHub</a>
+  </nav>
 
   <main class="legal-content">
     <div class="changelog-container reveal">
@@ -164,8 +192,10 @@
         <div class="footer-links">
           <h5>NAVIGATION</h5>
           <ul>
-            <li><a href="index.html#hero">Home</a></li>
-            <li><a href="changelog.html">Changelog</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="about/">About</a></li>
+            <li><a href="changelog/">Changelog</a></li>
             <li><a href="index.html#download">Download</a></li>
           </ul>
         </div>
@@ -173,8 +203,8 @@
           <h5>LINKS</h5>
           <ul>
             <li><a href="#" id="footer-github-link">GitHub</a></li>
-            <li><a href="privacy.html">Privacy Policy</a></li>
-            <li><a href="terms.html">Terms of Service</a></li>
+            <li><a href="privacy/">Privacy Policy</a></li>
+            <li><a href="terms/">Terms of Service</a></li>
           </ul>
         </div>
       </div>
