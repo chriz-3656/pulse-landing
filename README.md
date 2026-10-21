@@ -12,7 +12,7 @@ A complete, production-quality responsive landing website for "PULSE MUSIC", a m
 - **Live Developer Fetching**: Pulls live developer profile data directly from GitHub.
 
 ## Pulse Music App Status
-**Current Version:** v2.6.0 (Includes Pulse JAM Live Sync, screen-off WakeLocks, continuous autoplay, language-affinity radio engine, and playlist management).
+**Current Version:** v2.7.0 (Includes Instant Live Offline Download Queue, Dedicated Pure Offline Mode, Full Album & Playlist Batch Downloads, Pulse JAM Live Sync, screen-off WakeLocks, continuous autoplay, and language-affinity radio engine).
 
 ## Structure
 ```
