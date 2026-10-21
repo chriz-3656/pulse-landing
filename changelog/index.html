@@ -142,6 +142,20 @@
         <a href="../#download">Download</a>
       </nav>
       <div class="nav-actions">
+        <div class="deck-selector" aria-label="Deck Colorway Switcher">
+          <button class="deck-chip active" data-theme="amber" title="Obsidian Amber (Classic)">
+            <span class="chip-led" style="background:#FF9500; box-shadow:0 0 6px #FF9500;"></span>
+            <span class="mono">AMBER</span>
+          </button>
+          <button class="deck-chip" data-theme="cyan" title="Pioneer Ice Blue">
+            <span class="chip-led" style="background:#00D9FF;"></span>
+            <span class="mono">CYAN</span>
+          </button>
+          <button class="deck-chip" data-theme="green" title="Studio VU Green">
+            <span class="chip-led" style="background:#7CFF5B;"></span>
+            <span class="mono">GREEN</span>
+          </button>
+        </div>
         <a href="#" class="btn btn-secondary" id="nav-github-btn">GitHub</a>
         <a href="../#download" class="btn btn-primary btn-download">Download</a>
       </div>
@@ -155,6 +169,19 @@
 
   <!-- Mobile Nav -->
   <nav class="mobile-nav">
+    <div style="padding: 16px 24px; border-bottom: 1px solid var(--border-subtle);">
+      <div class="deck-selector" style="width: 100%; justify-content: space-around;">
+        <button class="deck-chip active" data-theme="amber">
+          <span class="chip-led" style="background:#FF9500;"></span> AMBER
+        </button>
+        <button class="deck-chip" data-theme="cyan">
+          <span class="chip-led" style="background:#00D9FF;"></span> CYAN
+        </button>
+        <button class="deck-chip" data-theme="green">
+          <span class="chip-led" style="background:#7CFF5B;"></span> GREEN
+        </button>
+      </div>
+    </div>
     <a href="../" class="mobile-link">Home</a>
     <a href="../#features" class="mobile-link">Features</a>
     <a href="../about/" class="mobile-link">About</a>

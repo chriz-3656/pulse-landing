@@ -949,6 +949,286 @@ footer {
   --lcd-cyan: #00F0FF;
 }
 
+/* Colorway Themes */
+[data-theme="cyan"] {
+  --amber: #00D9FF !important;
+  --amber-bright: #44EBFF !important;
+  --amber-dark: #0093AD !important;
+  --border: rgba(0, 217, 255, 0.28) !important;
+  --metal-gradient: linear-gradient(135deg, #1c272e 0%, #111a20 100%) !important;
+}
+
+[data-theme="cyan"] .btn-primary {
+  background: linear-gradient(135deg, #00D9FF 0%, #0088A3 100%) !important;
+  color: #000 !important;
+}
+
+[data-theme="green"] {
+  --amber: #7CFF5B !important;
+  --amber-bright: #A0FF85 !important;
+  --amber-dark: #43A627 !important;
+  --border: rgba(124, 255, 91, 0.28) !important;
+  --metal-gradient: linear-gradient(135deg, #182618 0%, #0f1a0f 100%) !important;
+}
+
+[data-theme="green"] .btn-primary {
+  background: linear-gradient(135deg, #7CFF5B 0%, #3F9B24 100%) !important;
+  color: #000 !important;
+}
+
+/* Deck Colorway Selector */
+.deck-selector {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(16, 16, 16, 0.95);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  padding: 3px;
+  gap: 3px;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.6);
+}
+
+.deck-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+.deck-chip:hover {
+  color: var(--text);
+  background: rgba(255,255,255,0.06);
+}
+
+.deck-chip.active {
+  color: #fff;
+  background: #222;
+  border-color: rgba(255,255,255,0.18);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+
+.chip-led {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  transition: all var(--transition-fast);
+  display: inline-block;
+}
+
+.deck-chip.active .chip-led {
+  box-shadow: 0 0 8px currentColor;
+}
+
+/* Vinyl Turntable Disc */
+.vinyl-disc {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #252525 18%, #141414 20%, #1a1a1a 45%, #101010 65%, #080808 100%);
+  border: 2px solid #333;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.8), 0 8px 24px rgba(0,0,0,0.6);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px auto;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.vinyl-disc::before {
+  content: '';
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--amber);
+  border: 4px solid #111;
+  box-shadow: 0 0 12px rgba(255, 179, 0, 0.35);
+  transition: background var(--transition-normal);
+}
+
+.vinyl-disc::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #000;
+}
+
+.is-playing .vinyl-disc {
+  animation: spinVinyl 3.5s linear infinite;
+}
+
+@keyframes spinVinyl {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.control-btn.play {
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.control-btn.play:hover {
+  transform: scale(1.08);
+}
+
+.control-btn.play.active {
+  box-shadow: 0 0 30px var(--amber) !important;
+}
+
+/* Interactive Teleprompter */
+.teleprompter-line {
+  padding: 10px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+.teleprompter-line:hover {
+  opacity: 0.85;
+  color: var(--text);
+}
+
+.teleprompter-line.active {
+  color: var(--amber);
+  opacity: 1;
+  transform: scale(1.05);
+  background: rgba(255, 179, 0, 0.08);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+/* FAQ Accordion Section */
+.faq-container {
+  max-width: 850px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faq-item {
+  background: var(--surface);
+  border: 1px solid var(--surface-light);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.faq-item:hover, .faq-item.open {
+  border-color: var(--border);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+}
+
+.faq-question {
+  width: 100%;
+  padding: 22px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  background: transparent;
+  gap: 16px;
+}
+
+.faq-toggle {
+  font-family: var(--font-mono);
+  font-size: 1.3rem;
+  color: var(--amber);
+  transition: transform var(--transition-normal);
+}
+
+.faq-item.open .faq-toggle {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), padding 0.35s ease;
+  padding: 0 28px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.faq-item.open .faq-answer {
+  max-height: 300px;
+  padding-bottom: 24px;
+}
+
+/* Mobile QR Code Card */
+.qr-card {
+  background: linear-gradient(145deg, #181818 0%, #121212 100%);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  max-width: 480px;
+  margin: 40px auto 0 auto;
+  box-shadow: 0 16px 32px rgba(0,0,0,0.5);
+  text-align: left;
+}
+
+.qr-code-img {
+  width: 110px;
+  height: 110px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  padding: 6px;
+  background: #151515;
+  flex-shrink: 0;
+}
+
+.qr-info h4 {
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.qr-info p {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.qr-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  background: rgba(255, 179, 0, 0.12);
+  color: var(--amber);
+  border: 1px solid var(--border);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+@media (max-width: 600px) {
+  .qr-card {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
 body {
   background-image: repeating-linear-gradient(
     45deg,

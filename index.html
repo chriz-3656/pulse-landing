@@ -60,10 +60,25 @@
         <a href="changelog/">Changelog</a>
         <a href="#player">Player</a>
         <a href="#library">Library</a>
+        <a href="#faq">FAQ</a>
         <a href="#download">Download</a>
       </nav>
       
       <div class="nav-actions">
+        <div class="deck-selector" aria-label="Deck Colorway Switcher">
+          <button class="deck-chip active" data-theme="amber" title="Obsidian Amber (Classic)">
+            <span class="chip-led" style="background:#FF9500; box-shadow:0 0 6px #FF9500;"></span>
+            <span class="mono">AMBER</span>
+          </button>
+          <button class="deck-chip" data-theme="cyan" title="Pioneer Ice Blue">
+            <span class="chip-led" style="background:#00D9FF;"></span>
+            <span class="mono">CYAN</span>
+          </button>
+          <button class="deck-chip" data-theme="green" title="Studio VU Green">
+            <span class="chip-led" style="background:#7CFF5B;"></span>
+            <span class="mono">GREEN</span>
+          </button>
+        </div>
         <a href="#" class="btn btn-secondary" id="nav-github-btn">GitHub</a>
       </div>
       
@@ -77,12 +92,26 @@
 
   <!-- Mobile Nav -->
   <nav class="mobile-nav">
+    <div style="padding: 16px 24px; border-bottom: 1px solid var(--border-subtle);">
+      <div class="deck-selector" style="width: 100%; justify-content: space-around;">
+        <button class="deck-chip active" data-theme="amber">
+          <span class="chip-led" style="background:#FF9500;"></span> AMBER
+        </button>
+        <button class="deck-chip" data-theme="cyan">
+          <span class="chip-led" style="background:#00D9FF;"></span> CYAN
+        </button>
+        <button class="deck-chip" data-theme="green">
+          <span class="chip-led" style="background:#7CFF5B;"></span> GREEN
+        </button>
+      </div>
+    </div>
     <a href="#hero" class="mobile-link">Home</a>
     <a href="#features" class="mobile-link">Features</a>
     <a href="about/" class="mobile-link">About</a>
     <a href="changelog/" class="mobile-link">Changelog</a>
     <a href="#player" class="mobile-link">Player</a>
     <a href="#library" class="mobile-link">Library</a>
+    <a href="#faq" class="mobile-link">FAQ</a>
     <a href="#" class="mobile-link btn btn-secondary" id="mobile-github-btn">GitHub</a>
   </nav>
 
@@ -243,31 +272,29 @@
       <div class="container player-section">
         <div class="player-visual reveal">
           <div style="background:#151515; border:1px solid #222; border-radius:24px; padding:32px; box-shadow:0 24px 48px rgba(0,0,0,0.5);">
-            <div style="aspect-ratio:1; background:linear-gradient(45deg, #1a1a1a, #2a2a2a); border-radius:12px; margin-bottom:32px; display:flex; align-items:center; justify-content:center;">
-              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#FFB300" stroke-width="1"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
-            </div>
-            <div style="text-align:center; margin-bottom:32px;">
-              <h3 style="font-size:1.5rem; margin-bottom:8px;">Starlight</h3>
-              <p style="color:var(--amber);">Silver Sky</p>
-              <div style="display:flex; justify-content:center; gap:8px; margin-top:16px;">
-                <span style="font-size:0.75rem; background:#222; padding:4px 12px; border-radius:12px;">Lo-fi</span>
-                <span style="font-size:0.75rem; background:#222; padding:4px 12px; border-radius:12px;">Chill</span>
-                <span style="font-size:0.75rem; background:#222; padding:4px 12px; border-radius:12px;">Dreamy</span>
+            <div class="vinyl-disc"></div>
+            <div style="text-align:center; margin-bottom:28px;">
+              <h3 style="font-size:1.5rem; margin-bottom:6px;">Starlight</h3>
+              <p style="color:var(--amber);">Silver Sky • Lo-Fi Beats</p>
+              <div style="display:flex; justify-content:center; gap:8px; margin-top:14px;">
+                <span class="mono" style="font-size:0.75rem; background:#222; border:1px solid #333; padding:4px 12px; border-radius:12px;">320 KBPS</span>
+                <span class="mono" style="font-size:0.75rem; background:#222; border:1px solid #333; padding:4px 12px; border-radius:12px;">HI-FI AUDIO</span>
+                <span class="mono" style="font-size:0.75rem; background:#222; border:1px solid #333; padding:4px 12px; border-radius:12px;">WEB SYNTH</span>
               </div>
             </div>
             <div class="mockup-progress">
               <div class="progress-bar">
                 <div class="progress-fill" style="width:40%;"></div>
               </div>
-              <div class="progress-times">
+              <div class="progress-times mono">
                 <span>1:42</span>
                 <span>3:52</span>
               </div>
             </div>
             <div class="mockup-controls" style="margin-top:24px;">
               <svg class="control-btn" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 20L9 12l10-8v16z"/><line x1="5" y1="19" x2="5" y2="5"/></svg>
-              <div class="control-btn play" style="width:64px; height:64px; box-shadow:0 0 24px rgba(255,179,0,0.3);">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+              <div class="control-btn play" style="width:64px; height:64px; box-shadow:0 0 24px rgba(255,179,0,0.3);" title="Click to Play / Pause Ambient Deck">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
               </div>
               <svg class="control-btn" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4l10 8-10 8V4z"/><line x1="19" y1="5" x2="19" y2="19"/></svg>
             </div>
@@ -352,11 +379,16 @@
             <span style="color:var(--text-muted); font-weight:500;">QUEUE</span>
           </div>
           
-          <div style="font-size:clamp(1.5rem, 3vw, 2.5rem); font-weight:700; line-height:1.4; display:flex; flex-direction:column; gap:16px;">
-            <p style="color:var(--text-muted); opacity:0.5;">In the middle of the night</p>
-            <p style="color:var(--amber); transform:scale(1.05); transition:transform 0.3s;">I found a light,</p>
-            <p style="color:var(--text-muted); opacity:0.8;">a reason to fight...</p>
+          <div style="font-size:clamp(1.2rem, 2.8vw, 1.8rem); font-weight:700; line-height:1.5; display:flex; flex-direction:column; gap:12px;">
+            <p class="teleprompter-line">In the middle of the quiet night...</p>
+            <p class="teleprompter-line active">I found a light, a reason to fight,</p>
+            <p class="teleprompter-line">Every waveform pulsing pure and true,</p>
+            <p class="teleprompter-line">Music beyond silence, just me and you.</p>
+            <p class="teleprompter-line">Analog soul in an uncompromising groove.</p>
           </div>
+          <p class="mono" style="font-size:0.75rem; color:var(--text-muted); margin-top:28px;">
+            ● INTERACTIVE TELEPROMPTER • CLICK ANY LINE TO SYNC
+          </p>
         </div>
       </div>
     </section>
@@ -560,6 +592,79 @@
       </div>
     </section>
 
+    <!-- FAQ Accordion Section -->
+    <section id="faq">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-subtitle">QUESTIONS & ANSWERS</span>
+          <h2 class="section-title">FREQUENTLY ASKED <span class="text-amber">QUESTIONS</span></h2>
+          <p class="section-desc">Everything you need to know about Pulse Music, audio sources, offline mode, and privacy.</p>
+        </div>
+
+        <div class="faq-container reveal">
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Is Pulse Music completely free and ad-free?</span>
+              <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Yes, 100%. Pulse Music is an open-source project licensed under Apache 2.0. There are zero subscriptions, zero third-party advertisements, and no paywalled features. Everything is completely free out of the box.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Does Pulse Music require a Google, YouTube, or Spotify account?</span>
+              <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>No account is required whatsoever. Pulse Music queries public stream endpoints anonymously without requiring signups or proprietary Google Play Services. Your listening history and crates remain private on your device.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>How does Dedicated Pure Offline Mode work?</span>
+              <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>When you toggle Pure Offline Mode in Settings or on the Home banner, Pulse Music severs all outbound cellular sockets. Search and playback query strictly your locally cached tracks and downloaded albums via Room SQLite, guaranteeing zero data usage on flights, subways, or travels.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>What is Pulse JAM and how does sync listening work?</span>
+              <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Pulse JAM lets you host or join live listening rooms. Powered by Firebase Realtime Database with buffer-aware drift correction (&lt;150ms auto-seek), host and listeners hear the exact same song timestamp together. Guests can vote-skip democratically with 50% consensus.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Where does the high-fidelity audio stream from?</span>
+              <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Pulse Music aggregates YouTube Music (lossless Opus audio via ytm-kt), JioSaavn (up to 320 kbps high-definition CD quality), and SoundCloud (progressive streams). Auto mode dynamically routes to the highest-fidelity provider with seed-provider stickiness.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>How do in-app updates work?</span>
+              <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Pulse Music features an integrated update checker (<code>AppUpdater.kt</code>) that periodically queries GitHub Releases. When a new version (e.g., v2.7.0) is published, you get a 1-tap download prompt to install the upgrade without losing your offline downloads or playlists.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Download Section -->
     <section id="download" class="download-section">
       <div class="container reveal">
@@ -569,6 +674,16 @@
         <div class="download-actions">
           <a href="#" class="btn btn-primary" id="bottom-download-btn">DOWNLOAD FOR ANDROID</a>
           <a href="#" class="btn btn-secondary" id="bottom-github-btn">VIEW ON GITHUB</a>
+        </div>
+
+        <!-- Instant QR Code for Mobile Install -->
+        <div class="qr-card">
+          <img src="assets/qr_download.svg" alt="Scan QR Code to Download APK" class="qr-code-img">
+          <div class="qr-info">
+            <span class="qr-badge">POINT PHONE CAMERA</span>
+            <h4>Instant Mobile Install</h4>
+            <p>Scan with your Android phone to download <strong>PulseMusic-v2.7.0.apk</strong> directly from GitHub Releases.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -593,6 +708,7 @@
             <li><a href="about/">About</a></li>
             <li><a href="#player">Player</a></li>
             <li><a href="#library">Library</a></li>
+            <li><a href="#faq">FAQ</a></li>
             <li><a href="changelog/">Changelog</a></li>
             <li><a href="#download">Download</a></li>
           </ul>

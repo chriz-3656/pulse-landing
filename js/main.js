@@ -26,9 +26,13 @@ cleanAddressBarUrl();
 
 document.addEventListener('DOMContentLoaded', () => {
   cleanAddressBarUrl();
+  initThemeSelector();
   initNavigation();
   initScrollReveal();
   initVUMeter();
+  initInteractivePlayer();
+  initTeleprompter();
+  initFAQAccordion();
   initFooterYear();
   setupLinks();
   fetchLatestRelease();
@@ -284,5 +288,252 @@ function setupLinks() {
     link.href = CONFIG.GITHUB_URL;
     link.setAttribute('target', '_blank');
     link.setAttribute('rel', 'noopener noreferrer');
+  });
+}
+
+/**
+ * Tactile Mechanical Audio Click
+ */
+function playMechanicalClick() {
+  try {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return;
+    const ctx = new AudioCtx();
+    const now = ctx.currentTime;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(850, now);
+    osc.frequency.exponentialRampToValueAtTime(140, now + 0.035);
+    gain.gain.setValueAtTime(0.06, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.035);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start(now);
+    osc.stop(now + 0.035);
+  } catch (e) {}
+}
+
+/**
+ * Deck Finish & Colorway Theme Selector
+ */
+function initThemeSelector() {
+  const savedTheme = localStorage.getItem('pulse_deck_theme') || 'amber';
+  applyTheme(savedTheme);
+
+  const chips = document.querySelectorAll('.deck-chip');
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const theme = chip.getAttribute('data-theme');
+      playMechanicalClick();
+      applyTheme(theme);
+      localStorage.setItem('pulse_deck_theme', theme);
+    });
+  });
+
+  function applyTheme(theme) {
+    if (theme === 'cyan') {
+      document.documentElement.setAttribute('data-theme', 'cyan');
+    } else if (theme === 'green') {
+      document.documentElement.setAttribute('data-theme', 'green');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+
+    document.querySelectorAll('.deck-chip').forEach(c => {
+      if (c.getAttribute('data-theme') === theme) {
+        c.classList.add('active');
+      } else {
+        c.classList.remove('active');
+      }
+    });
+  }
+}
+
+/**
+ * Web Audio Ambient Lo-Fi Synthesizer & Interactive Player
+ */
+class WebAudioDeckEngine {
+  constructor() {
+    this.ctx = null;
+    this.isPlaying = false;
+    this.timer = null;
+    this.step = 0;
+  }
+
+  init() {
+    if (!this.ctx) {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      this.ctx = new AudioCtx();
+    }
+    if (this.ctx.state === 'suspended') {
+      this.ctx.resume();
+    }
+  }
+
+  play() {
+    this.init();
+    this.isPlaying = true;
+
+    // Atmospheric warm analog chords: Cm9 -> Gm7 -> Fm9 -> Abmaj7
+    const chords = [
+      [130.81, 155.56, 196.00, 233.08, 293.66],
+      [98.00, 146.83, 174.61, 220.00, 261.63],
+      [87.31, 130.81, 155.56, 174.61, 220.00],
+      [103.83, 155.56, 207.65, 261.63, 311.13]
+    ];
+
+    let chordIdx = 0;
+    const playNext = () => {
+      if (!this.isPlaying) return;
+      const now = this.ctx.currentTime;
+      const freqs = chords[chordIdx % chords.length];
+      chordIdx++;
+
+      const filter = this.ctx.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(650 + Math.random() * 300, now);
+      filter.Q.setValueAtTime(1.8, now);
+
+      const gain = this.ctx.createGain();
+      gain.gain.setValueAtTime(0.001, now);
+      gain.gain.exponentialRampToValueAtTime(0.12, now + 0.12);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 2.7);
+
+      filter.connect(gain);
+      gain.connect(this.ctx.destination);
+
+      freqs.forEach(f => {
+        const osc = this.ctx.createOscillator();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(f, now);
+        osc.connect(filter);
+        osc.start(now);
+        osc.stop(now + 2.8);
+      });
+
+      this.timer = setTimeout(playNext, 2800);
+    };
+
+    playNext();
+  }
+
+  stop() {
+    this.isPlaying = false;
+    if (this.timer) clearTimeout(this.timer);
+  }
+}
+
+const deckAudioEngine = new WebAudioDeckEngine();
+
+function initInteractivePlayer() {
+  const playButtons = document.querySelectorAll('.control-btn.play');
+  const playerWrappers = document.querySelectorAll('.player-visual, .phone-mockup-wrapper');
+  const progressBars = document.querySelectorAll('.progress-fill');
+  const timeLabels = document.querySelectorAll('.progress-times span:first-child');
+
+  let isPlaying = false;
+  let elapsedSec = 102; // 1:42
+  const totalSec = 232;  // 3:52
+  let progressInterval = null;
+
+  playButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      playMechanicalClick();
+      togglePlayState();
+    });
+  });
+
+  function togglePlayState() {
+    isPlaying = !isPlaying;
+
+    if (isPlaying) {
+      deckAudioEngine.play();
+      playerWrappers.forEach(w => w.classList.add('is-playing'));
+      playButtons.forEach(b => {
+        b.classList.add('active');
+        b.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+      });
+
+      progressInterval = setInterval(() => {
+        elapsedSec = (elapsedSec + 1) % totalSec;
+        const mins = Math.floor(elapsedSec / 60);
+        const secs = (elapsedSec % 60).toString().padStart(2, '0');
+        const percent = (elapsedSec / totalSec) * 100;
+
+        progressBars.forEach(p => p.style.width = `${percent}%`);
+        timeLabels.forEach(t => t.textContent = `${mins}:${secs}`);
+      }, 1000);
+
+    } else {
+      deckAudioEngine.stop();
+      playerWrappers.forEach(w => w.classList.remove('is-playing'));
+      playButtons.forEach(b => {
+        b.classList.remove('active');
+        b.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+      });
+      if (progressInterval) clearInterval(progressInterval);
+    }
+  }
+}
+
+/**
+ * Interactive Lyric Teleprompter
+ */
+function initTeleprompter() {
+  const lines = document.querySelectorAll('.teleprompter-line');
+  if (!lines.length) return;
+
+  let currentLine = 1;
+  let autoAdvanceTimer = null;
+
+  lines.forEach((line, index) => {
+    line.addEventListener('click', () => {
+      playMechanicalClick();
+      selectLine(index);
+    });
+  });
+
+  function selectLine(idx) {
+    currentLine = idx;
+    lines.forEach((l, i) => {
+      if (i === currentLine) {
+        l.classList.add('active');
+      } else {
+        l.classList.remove('active');
+      }
+    });
+  }
+
+  // Cycle lines gently every 3.5 seconds
+  setInterval(() => {
+    const isDeckPlaying = document.querySelector('.player-visual.is-playing') !== null;
+    if (isDeckPlaying) {
+      currentLine = (currentLine + 1) % lines.length;
+      selectLine(currentLine);
+    }
+  }, 3500);
+}
+
+/**
+ * Hardware FAQ Accordion
+ */
+function initFAQAccordion() {
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    const questionBtn = item.querySelector('.faq-question');
+    if (!questionBtn) return;
+
+    questionBtn.addEventListener('click', () => {
+      playMechanicalClick();
+      const isOpen = item.classList.contains('open');
+
+      // Close other open items
+      faqItems.forEach(i => i.classList.remove('open'));
+
+      if (!isOpen) {
+        item.classList.add('open');
+      }
+    });
   });
 }
