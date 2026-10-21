@@ -2,6 +2,10 @@
  * Pulse Music - Landing Page JavaScript
  */
 
+// Idempotent initialization guard
+if (typeof window.__PULSE_MAIN_INITIALIZED === 'undefined') {
+  window.__PULSE_MAIN_INITIALIZED = true;
+
 // Configuration Constants
 const CONFIG = {
   DOWNLOAD_URL: "https://github.com/chriz-3656/Pulse-Music/releases/download/v2.7.0/PulseMusic-v2.7.0.apk",
@@ -10,13 +14,28 @@ const CONFIG = {
 
 /**
  * Clean URL: automatically hide .html and /index.html in the address bar
+ * and normalize directory subpages with trailing slash.
  */
 function cleanAddressBarUrl() {
   try {
     const loc = window.location;
-    if (loc.pathname.endsWith('.html') || loc.pathname.endsWith('/index.html')) {
-      const cleanPath = loc.pathname.replace(/\/index\.html$/, '/').replace(/\.html$/, '');
-      window.history.replaceState(null, '', cleanPath + loc.search + loc.hash);
+    let path = loc.pathname;
+    if (path.endsWith('/index.html')) {
+      path = path.replace(/\/index\.html$/, '/');
+    } else if (path.endsWith('index.html')) {
+      path = path.replace(/index\.html$/, '');
+      if (!path) path = '/';
+    } else if (path.endsWith('.html')) {
+      const base = path.replace(/\.html$/, '');
+      path = base.endsWith('/') ? base : base + '/';
+    } else {
+      const lastSeg = path.split('/').pop();
+      if (!path.endsWith('/') && lastSeg && !lastSeg.includes('.')) {
+        path = path + '/';
+      }
+    }
+    if (path !== loc.pathname) {
+      window.history.replaceState(null, '', path + loc.search + loc.hash);
     }
   } catch (e) {
     // Graceful fallback for restricted environments
@@ -537,3 +556,4 @@ function initFAQAccordion() {
     });
   });
 }
+} // End __PULSE_MAIN_INITIALIZED

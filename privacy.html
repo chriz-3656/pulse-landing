@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   
+  <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="css/style.css">
   
   <!-- Favicon placeholder -->
@@ -19,9 +20,24 @@
   <script>
     (function() {
       try {
-        if (window.location.pathname.endsWith('.html') || window.location.pathname.endsWith('/index.html')) {
-          var clean = window.location.pathname.replace(/\/index\.html$/, '/').replace(/\.html$/, '');
-          window.history.replaceState(null, '', clean + window.location.search + window.location.hash);
+        var loc = window.location;
+        var path = loc.pathname;
+        if (path.endsWith('/index.html')) {
+          path = path.replace(/\/index\.html$/, '/');
+        } else if (path.endsWith('index.html')) {
+          path = path.replace(/index\.html$/, '');
+          if (!path) path = '/';
+        } else if (path.endsWith('.html')) {
+          var base = path.replace(/\.html$/, '');
+          path = base.endsWith('/') ? base : base + '/';
+        } else {
+          var lastSeg = path.split('/').pop();
+          if (!path.endsWith('/') && lastSeg && lastSeg.indexOf('.') === -1) {
+            path = path + '/';
+          }
+        }
+        if (path !== loc.pathname) {
+          window.history.replaceState(null, '', path + loc.search + loc.hash);
         }
       } catch(e) {}
     })();
