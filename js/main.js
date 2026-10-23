@@ -60,8 +60,9 @@ async function fetchCachedJSON(url, cacheKey) {
 }
 
 /**
- * Clean URL: automatically hide .html and /index.html in the address bar
- * and normalize directory subpages with trailing slash.
+ * Clean URL: automatically hide .html and /index.html in the address bar.
+ * Server-side trailing-slash redirects handle directory URLs, so unknown
+ * paths (including the 404 page) are left untouched.
  */
 function cleanAddressBarUrl() {
   try {
@@ -72,14 +73,9 @@ function cleanAddressBarUrl() {
     } else if (path.endsWith('index.html')) {
       path = path.replace(/index\.html$/, '');
       if (!path) path = '/';
-    } else if (path.endsWith('.html')) {
+    } else if (path.endsWith('.html') && !/\/404\.html$/.test(path)) {
       const base = path.replace(/\.html$/, '');
       path = base.endsWith('/') ? base : base + '/';
-    } else {
-      const lastSeg = path.split('/').pop();
-      if (!path.endsWith('/') && lastSeg && !lastSeg.includes('.')) {
-        path = path + '/';
-      }
     }
     if (path !== loc.pathname) {
       window.history.replaceState(null, '', path + loc.search + loc.hash);
