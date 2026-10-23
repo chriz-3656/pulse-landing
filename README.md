@@ -1,46 +1,69 @@
-# Pulse Music - Landing Page
+# Pulse Music — Landing Website
 
-A complete, production-quality responsive landing website for "PULSE MUSIC", a modern Android music streaming application.
+Static marketing site for **Pulse Music**, an open-source Android music player with multi-source streaming, offline playback, and Pulse JAM synchronized listening rooms.
 
-## Features
-- HTML5, CSS3, Vanilla JavaScript
-- Fully Responsive (Mobile, Tablet, Desktop)
-- Hi-Fi / Analog Audio Aesthetic
-- No frameworks used (No React, Tailwind, Bootstrap)
-- Lightweight & Fast
-- **Dynamic Download Tracker**: Automatically fetches the latest APK and exact download count using the GitHub Releases API.
-- **Live Developer Fetching**: Pulls live developer profile data directly from GitHub.
+- **Canonical host:** https://pulseapp-music.vercel.app
+- **Mirror:** GitHub Pages (`chriz-3656.github.io/pulse-landing`) — canonical tags and the sitemap always point to the Vercel host.
+- **Tracking app version:** v2.7.1
 
-## Pulse Music App Status
-**Current Version:** v2.7.0 (Includes Instant Live Offline Download Queue, Dedicated Pure Offline Mode, Full Album & Playlist Batch Downloads, Pulse JAM Live Sync, screen-off WakeLocks, continuous autoplay, and language-affinity radio engine).
+## Stack
 
-## Structure
+HTML5, CSS3, and vanilla JavaScript. There is no build step and no framework. The only runtime dependencies are Google Fonts, the GitHub REST API, GitHub's star/fork button script, and `marked.js` on the changelog page.
+
+## Site structure
+
+Canonical pages live in trailing-slash directories:
+
 ```
-pulse-landing/
-│
-├── index.html        # Main HTML file
-├── css/
-│   └── style.css     # CSS styles
-├── js/
-│   └── main.js       # Vanilla JS for interactions
-├── assets/           # Directory for assets (SVGs, Images)
-└── README.md
+/                       index.html
+/about/                 about/index.html
+/changelog/             changelog/index.html
+/privacy/               privacy/index.html
+/terms/                 terms/index.html
+/404.html               custom not-found page (noindex)
 ```
 
-## How to Test
-Simply open `index.html` in your web browser. Or, run a local development server:
+The root files `about.html`, `changelog.html`, `privacy.html`, and `terms.html` are intentionally minimal redirect stubs. They carry `noindex`, a canonical link to the clean URL, and a meta-refresh/JS redirect for static hosts that cannot apply server redirects. Do not add content to them.
+
+All internal links use clean URLs and page-relative paths, so the same files work both at the Vercel domain root and under the GitHub Pages `/pulse-landing/` subpath. `404.html` keeps root-absolute links because Vercel serves it at arbitrary paths, and includes a small rewrite for the GitHub Pages mirror.
+
+## Redirects and clean URLs
+
+- `vercel.json`: `cleanUrls` + `trailingSlash`, plus permanent redirects from `/index.html` and the four legacy `.html` paths.
+- `_redirects` (Netlify-compatible hosts): 301 redirects for the same paths.
+- `robots.txt` points to the Vercel sitemap, and `sitemap.xml` lists only canonical trailing-slash URLs with `lastmod` dates.
+
+## Local preview
+
 ```bash
 cd pulse-landing
-npx serve .
-# or
-python3 -m http.server
+python3 -m http.server 8000
+# http://localhost:8000/
 ```
 
-## Configuration
-Update the download and GitHub links in `js/main.js`:
-```javascript
-const CONFIG = {
-  DOWNLOAD_URL: "https://your-download-link.com",
-  GITHUB_URL: "https://github.com/your-repo"
-};
-```
+The redirect and clean-URL rules are host-level features, so a plain static server will show `/about/index.html` rather than redirecting `/about.html`. Use `vercel dev` or Netlify's redirect emulation if you need to test those rules locally.
+
+## Deployment
+
+1. Deploy this directory as the project root on Vercel (framework preset: Other, no build command).
+2. Keep `cleanUrls` and `trailingSlash` enabled.
+3. For the GitHub Pages mirror, publish the same files and leave the canonical/OG tags pointed at the Vercel host.
+4. Before release, confirm the latest GitHub release/APK through the site's dynamic links or the repository's Releases page.
+
+## JavaScript behavior
+
+- Fetches the latest release and developer profile from the public GitHub API.
+- Caches those responses in `localStorage` for 10 minutes to stay within the unauthenticated rate limit (60 requests/hour/IP). No token is used or exposed.
+- Falls back to static links and text if the API is unavailable.
+- Stores the selected colorway in `localStorage` (`pulse_deck_theme`).
+
+## Privacy
+
+The privacy policy (`/privacy/`) documents local library storage, third-party streaming requests, Firebase Realtime Database/Auth for Pulse JAM rooms, GitHub update/download requests, remote configuration, and the website's use of Google Fonts/GitHub APIs/localStorage.
+
+## License
+
+- **This website:** GNU General Public License v3.0 — see [`LICENSE`](LICENSE) in the repository. The site serves the same text as [`LICENSE.txt`](LICENSE.txt) and links to that file directly, because Vercel's `trailingSlash` setting makes extensionless `/LICENSE` unreliable. `vercel.json` also redirects `/LICENSE` and `/LICENSE/` to `/LICENSE.txt`.
+- **Pulse Music Android app:** GNU General Public License v3.0, matching the app repository: https://github.com/chriz-3656/Pulse-Music
+
+The app and website are unofficial clients and are not affiliated with YouTube, Google, JioSaavn, SoundCloud, or Firebase.

@@ -4,42 +4,52 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>Privacy Policy — Pulse Music</title>
+  <meta name="description" content="How Pulse Music handles data: local library storage, third-party streaming requests, Firebase-backed Pulse JAM rooms, update checks, and website privacy.">
   <meta name="theme-color" content="#080808">
   <meta name="google-site-verification" content="JyQ0RfcWv91lmKpfq5ZWkhb3wTgpCK6mlrlQBF23X3k" />
-  
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://pulseapp-music.vercel.app/privacy/">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Privacy Policy — Pulse Music">
+  <meta property="og:description" content="What Pulse Music stores on your device, which network operations it performs, and how Pulse JAM room data is handled.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pulseapp-music.vercel.app/privacy/">
+  <meta property="og:image" content="https://pulseapp-music.vercel.app/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Pulse Music — Music beyond silence.">
+  <meta property="og:site_name" content="Pulse Music">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Privacy Policy — Pulse Music">
+  <meta name="twitter:description" content="What Pulse Music stores on your device, which network operations it performs, and how Pulse JAM room data is handled.">
+  <meta name="twitter:image" content="https://pulseapp-music.vercel.app/assets/og-image.png">
+  <meta name="twitter:image:alt" content="Pulse Music — Music beyond silence.">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="css/style.css">
-  
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23FFB300'/><path d='M20 50h15l10-25 15 50 10-25h10' stroke='%23080808' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
 
-  <script>
-    (function() {
-      try {
-        var loc = window.location;
-        var path = loc.pathname;
-        if (path.endsWith('/index.html')) {
-          path = path.replace(/\/index\.html$/, '/');
-        } else if (path.endsWith('index.html')) {
-          path = path.replace(/index\.html$/, '');
-          if (!path) path = '/';
-        } else if (path.endsWith('.html')) {
-          var base = path.replace(/\.html$/, '');
-          path = base.endsWith('/') ? base : base + '/';
-        } else {
-          var lastSeg = path.split('/').pop();
-          if (!path.endsWith('/') && lastSeg && lastSeg.indexOf('.') === -1) {
-            path = path + '/';
-          }
-        }
-        if (path !== loc.pathname) {
-          window.history.replaceState(null, '', path + loc.search + loc.hash);
-        }
-      } catch(e) {}
-    })();
+  <link rel="stylesheet" href="../css/style.css">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23FFB300'/><path d='M20 50h15l10-25 15 50 10-25h10' stroke='%23080808' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+  <link rel="apple-touch-icon" href="../assets/app_icon-192.png">
+
+  <script>document.documentElement.classList.add('js');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Pulse Music",
+    "description": "Open-source Android music player with multi-source streaming, offline playback, and Pulse JAM synchronized listening rooms.",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "Android",
+    "softwareVersion": "2.7.1",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "downloadUrl": "https://github.com/chriz-3656/Pulse-Music/releases/latest",
+    "url": "https://pulseapp-music.vercel.app/"
+  }
   </script>
 
   <style>
@@ -88,11 +98,16 @@
 </head>
 <body>
 
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
   <!-- Navigation -->
   <header>
     <div class="container nav-container">
-      <a href="../" class="logo-link">
-        <img src="../assets/app_icon.png" alt="Pulse Logo" class="logo-icon" style="border-radius: 20%; object-fit: cover;">
+      <a href="../" class="logo-link" aria-label="Pulse Music home">
+        <picture>
+          <source type="image/webp" srcset="../assets/app_icon-64.webp 64w, ../assets/app_icon-192.webp 192w" sizes="32px">
+          <img src="../assets/app_icon-64.png" alt="" class="logo-icon" width="32" height="32" decoding="async" style="border-radius: 20%; object-fit: cover;">
+        </picture>
         PULSE
       </a>
       
@@ -107,11 +122,11 @@
       </nav>
       
       <div class="nav-actions">
-        <a href="#" class="btn btn-secondary" id="nav-github-btn">GitHub</a>
+        <a href="https://github.com/chriz-3656/Pulse-Music" class="btn btn-secondary" id="nav-github-btn">GitHub</a>
         <a href="../#download" class="btn btn-primary btn-download">Download</a>
       </div>
       
-      <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <button class="hamburger" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
         <span></span>
         <span></span>
         <span></span>
@@ -120,7 +135,7 @@
   </header>
 
   <!-- Mobile Nav -->
-  <nav class="mobile-nav">
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" aria-hidden="true" inert>
     <a href="../" class="mobile-link">Home</a>
     <a href="../#features" class="mobile-link">Features</a>
     <a href="../about/" class="mobile-link">About</a>
@@ -128,36 +143,50 @@
     <a href="../#player" class="mobile-link">Player</a>
     <a href="../#library" class="mobile-link">Library</a>
     <a href="../#download" class="mobile-link btn btn-primary">Download</a>
-    <a href="#" class="mobile-link btn btn-secondary" id="mobile-github-btn">GitHub</a>
+    <a href="https://github.com/chriz-3656/Pulse-Music" class="mobile-link btn btn-secondary" id="mobile-github-btn">GitHub</a>
   </nav>
 
-  <main class="legal-content">
+  <main class="legal-content" id="main-content">
     <div class="legal-container reveal">
       <h1>Privacy Policy</h1>
-      <span class="last-updated">LAST UPDATED: OCTOBER 2026 (v2.7.0)</span>
+      <span class="last-updated">LAST UPDATED: OCTOBER 23, 2026 (v2.7.1)</span>
       
-      <p>Your privacy is important to us. It is Pulse Music's fundamental policy to respect your privacy regarding any information we may collect from you across our application and website. Pulse Music is strictly an ad-free, telemetry-free open source music client.</p>
+      <p>Pulse Music is an open-source Android music client. This policy explains what the app stores on your device, which network operations it performs, and what this website does. We do not sell personal data, and the app does not include Firebase Analytics or advertising SDKs.</p>
       
-      <h2>1. Information We Collect</h2>
-      <p>We do not collect personal identifying information. Pulse Music operates primarily locally on your Android device.</p>
+      <h2>1. Data Stored on Your Device</h2>
+      <p>Pulse Music works primarily on your Android device. We do not require an account, and we do not operate a server that stores your listening history.</p>
       <ul>
-        <li><strong>Local Library & Offline Storage:</strong> Your playlists, favorites, download tasks, and cached tracks are stored locally on your device using Android Room SQLite and Storage Access Framework. We do not transmit or sync this data to our servers.</li>
-        <li><strong>Dedicated Pure Offline Mode:</strong> When Pure Offline Mode is enabled, Pulse Music severs all remote network sockets, querying strictly local databases and cached storage with zero telemetry or data transmission.</li>
-        <li><strong>Provider Integration:</strong> When you connect to providers like YouTube Music, JioSaavn, or SoundCloud, your search queries and streaming requests interact directly with those public content delivery networks. Please refer to their respective terms.</li>
-        <li><strong>Pulse JAM Rooms:</strong> Real-time room state (active song, playback timestamp, participant ID) is processed transiently over Firebase Realtime Database and discarded when rooms close. Disconnected users are immediately pruned via onDisconnect listeners.</li>
+        <li><strong>Local Library & Offline Storage:</strong> Your playlists, favorites, download tasks, settings, and cached tracks are stored locally using Android Room SQLite and the Storage Access Framework. This data is not synced to us.</li>
+        <li><strong>Pure Offline Mode:</strong> This mode stops online search and streaming requests and limits playback to local or cached content. It is not a network kill switch. Update checks, downloads you start, and remote configuration or kill-switch requests can still use the network unless you disable those features or restrict network access in Android.</li>
       </ul>
-
-      <h2>2. Use of Information</h2>
-      <p>We use the collected information for the sole purpose of providing and improving the Pulse Music player experience. We do not sell or share your data with third parties for marketing purposes.</p>
-
-      <h2>3. Third-Party Services</h2>
-      <p>Our app connects to third-party streaming providers to stream audio directly. We do not embed analytics SDKs, Google Firebase Analytics, Facebook SDK, or advertising trackers.</p>
-
-      <h2>4. Your Consent</h2>
-      <p>By downloading and using Pulse Music, you hereby consent to our Privacy Policy and agree to its terms.</p>
-
-      <h2>5. Contact Us</h2>
-      <p>If you have any questions about how we handle user data and personal information, feel free to open an issue or discussion on our official GitHub repository.</p>
+      
+      <h2>2. Network Operations</h2>
+      <p>Pulse Music is not a zero-network app. It performs network requests when you use online features or when background maintenance is enabled. Those requests necessarily disclose technical information such as your IP address, request time, and user agent to the destination service.</p>
+      <ul>
+        <li><strong>Search, streaming, and metadata:</strong> Requests go to third-party providers such as YouTube Music, JioSaavn, SoundCloud, and their content delivery networks. Those providers process request data under their own privacy policies.</li>
+        <li><strong>Pulse JAM rooms:</strong> Pulse JAM uses Firebase Realtime Database and Firebase Authentication (including anonymous authentication where enabled) to create and join live rooms. Room records can include a room code, participant identifier or display name, track metadata, playback position, queue, and votes. Room data is stored in Firebase while the room exists and may persist until the host ends or cleans up the room, or until it is removed by retention controls. Disconnected participants are pruned from active presence. Google/Firebase processes this data under Google's privacy terms.</li>
+        <li><strong>Downloads and update checks:</strong> APK downloads and update checks use GitHub Releases and the GitHub API. Android's package installer handles installation after you confirm it. GitHub receives standard request metadata.</li>
+        <li><strong>Remote configuration and kill-switch:</strong> The app may fetch configuration or a kill-switch response to disable broken providers or features. These requests also disclose standard technical information to the configuration host.</li>
+        <li><strong>Third-party providers:</strong> The app uses unofficial provider integrations. Those services may log requests or change their practices independently of Pulse Music.</li>
+      </ul>
+      
+      <h2>3. Analytics and Advertising</h2>
+      <p>Firebase Analytics has been removed from the app. Pulse Music does not include advertising SDKs, sell personal data, or build advertising profiles. Third-party streaming providers and Firebase may still process technical data as described above under their own policies.</p>
+      
+      <h2>4. This Website</h2>
+      <p>This website is static and does not include analytics. It loads Google Fonts (which sends a request to Google), uses the public GitHub API to display the latest release and developer profile, loads GitHub's button script, and fetches the app changelog from GitHub. The site stores your theme choice and a roughly 10-minute cache of public GitHub API responses in your browser's localStorage. Vercel or GitHub Pages may keep standard server logs. Links to external sites are governed by those sites' policies.</p>
+      
+      <h2>5. Retention and Your Choices</h2>
+      <p>Local app data remains on your device until you clear it or uninstall the app. You can delete downloads and cached files from the app or Android settings, disable automatic update checks where available, and restrict network access with Android's system controls. Pulse JAM room data follows the Firebase retention described above. If you need a room removed, open an issue on GitHub with the room code and approximate time; anonymous rooms may not be identifiable.</p>
+      
+      <h2>6. Children</h2>
+      <p>Pulse Music is not directed at children under 13. Do not use Pulse JAM if you are below the minimum age required by your local law or the applicable provider's terms.</p>
+      
+      <h2>7. Changes to This Policy</h2>
+      <p>We may update this policy as the app changes. Material changes will be reflected by the date and version above.</p>
+      
+      <h2>8. Contact</h2>
+      <p>If you have questions about this policy or how data is handled, open an issue or discussion on the official <a href="https://github.com/chriz-3656/Pulse-Music" target="_blank" rel="noopener noreferrer">GitHub repository</a>.</p>
     </div>
   </main>
 
@@ -166,8 +195,11 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="../" class="logo-link">
-            <img src="../assets/app_icon.png" alt="Pulse Logo" class="logo-icon" style="border-radius: 20%; object-fit: cover;">
+          <a href="../" class="logo-link" aria-label="Pulse Music home">
+            <picture>
+              <source type="image/webp" srcset="../assets/app_icon-64.webp 64w, ../assets/app_icon-192.webp 192w" sizes="32px">
+              <img src="../assets/app_icon-64.png" alt="" class="logo-icon" width="32" height="32" decoding="async" style="border-radius: 20%; object-fit: cover;">
+            </picture>
             PULSE
           </a>
           <p>Music beyond silence.</p>
@@ -187,22 +219,23 @@
         <div class="footer-links">
           <h5>LINKS</h5>
           <ul>
-            <li><a href="#" id="footer-github-link">GitHub</a></li>
-            <li><a href="./">Privacy Policy</a></li>
+            <li><a href="https://github.com/chriz-3656/Pulse-Music" id="footer-github-link">GitHub</a></li>
+            <li><a href="../privacy/" aria-current="page">Privacy Policy</a></li>
             <li><a href="../terms/">Terms of Service</a></li>
+            <li><a href="../LICENSE.txt">GPL-3.0 License</a></li>
           </ul>
         </div>
       </div>
       
       <div class="footer-bottom">
         <div>
-          &copy; <span id="current-year"></span> Pulse Music. All rights reserved.<br>
+          &copy; <span id="current-year"></span> Pulse Music. Website source licensed under GPL-3.0.<br>
           <span style="color:var(--text-muted); font-size: 0.75rem; margin-top: 4px; display: inline-block;">
             An open source 3rd party streaming app. Developed by <a href="https://github.com/chriz-3656" target="_blank" rel="noopener noreferrer" style="color:var(--amber); text-decoration:underline;">chriz-3656</a>.
           </span>
         </div>
         <div class="footer-tech">
-          Pulse Music <span class="app-version">v2.7.0</span><br>
+          Pulse Music <span class="app-version">v2.7.1</span><br>
           Android Music Client
         </div>
       </div>

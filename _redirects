@@ -1,4 +1,7 @@
-/about.html       /about/       301
-/changelog.html   /changelog/   301
-/privacy.html     /privacy/     301
-/terms.html       /terms/       301
+/index.html      /             301
+/about.html      /about/       301
+/changelog.html  /changelog/   301
+/privacy.html    /privacy/     301
+/terms.html      /terms/       301
+/LICENSE         /LICENSE.txt  301
+/LICENSE/        /LICENSE.txt  301

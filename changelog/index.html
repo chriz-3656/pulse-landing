@@ -4,45 +4,54 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>Changelog — Pulse Music</title>
-  <meta name="description" content="All notable updates, new features, and bug fixes added to Pulse Music.">
+  <meta name="description" content="Pulse Music changelog: website updates and the latest app release history from GitHub.">
   <meta name="theme-color" content="#080808">
-  
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://pulseapp-music.vercel.app/changelog/">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Changelog — Pulse Music">
+  <meta property="og:description" content="Website updates and the latest Pulse Music app release history from GitHub.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pulseapp-music.vercel.app/changelog/">
+  <meta property="og:image" content="https://pulseapp-music.vercel.app/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Pulse Music — Music beyond silence.">
+  <meta property="og:site_name" content="Pulse Music">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Changelog — Pulse Music">
+  <meta name="twitter:description" content="Website updates and the latest Pulse Music app release history from GitHub.">
+  <meta name="twitter:image" content="https://pulseapp-music.vercel.app/assets/og-image.png">
+  <meta name="twitter:image:alt" content="Pulse Music — Music beyond silence.">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="css/style.css">
-  
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23FFB300'/><path d='M20 50h15l10-25 15 50 10-25h10' stroke='%23080808' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
-  
-  <!-- Marked.js for Markdown parsing -->
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <script>
-    (function() {
-      try {
-        var loc = window.location;
-        var path = loc.pathname;
-        if (path.endsWith('/index.html')) {
-          path = path.replace(/\/index\.html$/, '/');
-        } else if (path.endsWith('index.html')) {
-          path = path.replace(/index\.html$/, '');
-          if (!path) path = '/';
-        } else if (path.endsWith('.html')) {
-          var base = path.replace(/\.html$/, '');
-          path = base.endsWith('/') ? base : base + '/';
-        } else {
-          var lastSeg = path.split('/').pop();
-          if (!path.endsWith('/') && lastSeg && lastSeg.indexOf('.') === -1) {
-            path = path + '/';
-          }
-        }
-        if (path !== loc.pathname) {
-          window.history.replaceState(null, '', path + loc.search + loc.hash);
-        }
-      } catch(e) {}
-    })();
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23FFB300'/><path d='M20 50h15l10-25 15 50 10-25h10' stroke='%23080808' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+  <link rel="apple-touch-icon" href="../assets/app_icon-192.png">
+
+  <script>document.documentElement.classList.add('js');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Pulse Music",
+    "description": "Open-source Android music player with multi-source streaming, offline playback, and Pulse JAM synchronized listening rooms.",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "Android",
+    "softwareVersion": "2.7.1",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "downloadUrl": "https://github.com/chriz-3656/Pulse-Music/releases/latest",
+    "url": "https://pulseapp-music.vercel.app/"
+  }
   </script>
+
+  <!-- Marked.js for Markdown parsing -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
 
   <style>
     .legal-content {
@@ -65,6 +74,43 @@
       display: block;
       font-size: 1.1rem;
     }
+
+    .site-update-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--amber);
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 48px;
+    }
+    .site-update-card .release-header {
+      margin-bottom: 12px;
+    }
+    .site-update-card ul {
+      padding-left: 20px;
+      color: var(--text-secondary);
+    }
+    .site-update-card li {
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+    .site-update-kicker {
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .app-changelog-heading {
+      font-family: var(--font-mono);
+      color: var(--amber);
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin: 0 0 24px 0;
+    }
     
     /* Timeline Styles */
     .timeline {
@@ -85,7 +131,7 @@
       height: 16px;
       border-radius: 50%;
       background: var(--amber);
-      border: 4px solid var(--background);
+      border: 4px solid var(--bg);
     }
     
     .release-header {
@@ -141,18 +187,23 @@
 </head>
 <body>
 
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
   <!-- Navigation -->
   <header>
     <div class="container nav-container">
-      <a href="../" class="logo-link">
-        <img src="../assets/app_icon.png" onerror="if(!this.dataset.t){this.dataset.t=1;this.src='assets/app_icon.png';}" alt="Pulse Logo" class="logo-icon" style="border-radius: 20%; object-fit: cover;">
+      <a href="../" class="logo-link" aria-label="Pulse Music home">
+        <picture>
+          <source type="image/webp" srcset="../assets/app_icon-64.webp 64w, ../assets/app_icon-192.webp 192w" sizes="32px">
+          <img src="../assets/app_icon-64.png" alt="" class="logo-icon" width="32" height="32" decoding="async" style="border-radius: 20%; object-fit: cover;">
+        </picture>
         PULSE
       </a>
       <nav class="nav-links">
         <a href="../">Home</a>
         <a href="../#features">Features</a>
         <a href="../about/">About</a>
-        <a href="./" style="color: var(--amber); font-weight: 600;">Changelog</a>
+        <a href="../changelog/" aria-current="page" style="color: var(--amber); font-weight: 600;">Changelog</a>
         <a href="../#player">Player</a>
         <a href="../#library">Library</a>
         <a href="../#download">Download</a>
@@ -172,10 +223,10 @@
             <span class="mono">GREEN</span>
           </button>
         </div>
-        <a href="#" class="btn btn-secondary" id="nav-github-btn">GitHub</a>
+        <a href="https://github.com/chriz-3656/Pulse-Music" class="btn btn-secondary" id="nav-github-btn">GitHub</a>
         <a href="../#download" class="btn btn-primary btn-download">Download</a>
       </div>
-      <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <button class="hamburger" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
         <span></span>
         <span></span>
         <span></span>
@@ -184,7 +235,7 @@
   </header>
 
   <!-- Mobile Nav -->
-  <nav class="mobile-nav">
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" aria-hidden="true" inert>
     <div style="padding: 16px 24px; border-bottom: 1px solid var(--border-subtle);">
       <div class="deck-selector" style="width: 100%; justify-content: space-around;">
         <button class="deck-chip active" data-theme="amber">
@@ -201,16 +252,34 @@
     <a href="../" class="mobile-link">Home</a>
     <a href="../#features" class="mobile-link">Features</a>
     <a href="../about/" class="mobile-link">About</a>
-    <a href="./" class="mobile-link" style="color: var(--amber); font-weight: 700;">Changelog</a>
+    <a href="../changelog/" class="mobile-link" aria-current="page" style="color: var(--amber); font-weight: 700;">Changelog</a>
     <a href="../#player" class="mobile-link">Player</a>
     <a href="../#library" class="mobile-link">Library</a>
-    <a href="#" class="mobile-link btn btn-secondary" id="mobile-github-btn">GitHub</a>
+    <a href="https://github.com/chriz-3656/Pulse-Music" class="mobile-link btn btn-secondary" id="mobile-github-btn">GitHub</a>
   </nav>
 
-  <main class="legal-content">
+  <main class="legal-content" id="main-content">
     <div class="changelog-container reveal">
       <h1>Changelog</h1>
-      <span class="subtitle">All notable updates and new features added to Pulse Music.</span>
+      <span class="subtitle">Website updates and the latest app release history from GitHub.</span>
+
+      <div class="site-update-card">
+        <span class="site-update-kicker">Unreleased · Website</span>
+        <div class="release-header">
+          <span class="release-version">Website release-readiness fixes</span>
+          <span class="release-date">October 2026</span>
+        </div>
+        <ul>
+          <li>Canonical clean URLs with redirects from legacy <code>.html</code> paths.</li>
+          <li>Self-referencing canonical tags, Open Graph/Twitter metadata, structured data, and a 1200×630 social preview image.</li>
+          <li>Accessibility fixes for keyboard navigation, the mobile menu, FAQ accordions, focus states, and reduced-motion/no-JavaScript rendering.</li>
+          <li>Optimized WebP app icons and screenshots, plus a 10-minute cache for public GitHub API requests.</li>
+          <li>Privacy policy updated for Firebase-backed Pulse JAM rooms, update checks, downloads, and remote configuration.</li>
+          <li>Added the GPL-3.0 website license and corrected clean-URL/sitemap metadata.</li>
+        </ul>
+      </div>
+
+      <h2 class="app-changelog-heading">App releases</h2>
       
       <div id="changelog-content">
         <div style="text-align:center; padding: 48px 0;">
@@ -219,6 +288,11 @@
         </div>
       </div>
     </div>
+    <noscript>
+      <div class="changelog-container">
+        <p style="color:var(--text-secondary);">JavaScript is disabled, so the live app changelog is unavailable. Read the release history on <a href="https://github.com/chriz-3656/Pulse-Music/releases" style="color:var(--amber); text-decoration:underline;">GitHub Releases</a>.</p>
+      </div>
+    </noscript>
   </main>
 
   <!-- Footer -->
@@ -226,8 +300,11 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="../" class="logo-link">
-            <img src="../assets/app_icon.png" onerror="if(!this.dataset.t){this.dataset.t=1;this.src='assets/app_icon.png';}" alt="Pulse Logo" class="logo-icon" style="border-radius: 20%; object-fit: cover;">
+          <a href="../" class="logo-link" aria-label="Pulse Music home">
+            <picture>
+              <source type="image/webp" srcset="../assets/app_icon-64.webp 64w, ../assets/app_icon-192.webp 192w" sizes="32px">
+              <img src="../assets/app_icon-64.png" alt="" class="logo-icon" width="32" height="32" decoding="async" style="border-radius: 20%; object-fit: cover;">
+            </picture>
             PULSE
           </a>
           <p>Music beyond silence.</p>
@@ -238,29 +315,30 @@
             <li><a href="../">Home</a></li>
             <li><a href="../#features">Features</a></li>
             <li><a href="../about/">About</a></li>
-            <li><a href="./">Changelog</a></li>
+            <li><a href="../changelog/">Changelog</a></li>
             <li><a href="../#download">Download</a></li>
           </ul>
         </div>
         <div class="footer-links">
           <h5>LINKS</h5>
           <ul>
-            <li><a href="#" id="footer-github-link">GitHub</a></li>
+            <li><a href="https://github.com/chriz-3656/Pulse-Music" id="footer-github-link">GitHub</a></li>
             <li><a href="../privacy/">Privacy Policy</a></li>
             <li><a href="../terms/">Terms of Service</a></li>
+            <li><a href="../LICENSE.txt">GPL-3.0 License</a></li>
           </ul>
         </div>
       </div>
       
       <div class="footer-bottom">
         <div>
-          &copy; <span id="current-year"></span> Pulse Music. All rights reserved.<br>
+          &copy; <span id="current-year"></span> Pulse Music. Website source licensed under GPL-3.0.<br>
           <span style="color:var(--text-muted); font-size: 0.75rem; margin-top: 4px; display: inline-block;">
             An open source 3rd party streaming app. Developed by <a href="https://github.com/chriz-3656" target="_blank" rel="noopener noreferrer" style="color:var(--amber); text-decoration:underline;">chriz-3656</a>.
           </span>
         </div>
         <div class="footer-tech">
-          Pulse Music <span class="app-version">v2.7.0</span><br>
+          Pulse Music <span class="app-version">v2.7.1</span><br>
           Android Music Client
         </div>
       </div>
@@ -343,7 +421,7 @@
         
       } catch (err) {
         console.error(err);
-        container.innerHTML = `<p style="color:var(--peak-red);">Failed to load changelog. Please check GitHub directly.</p>`;
+        container.innerHTML = `<p style="color:var(--vu-red);">The live changelog could not be loaded. Read the release history on <a href="https://github.com/chriz-3656/Pulse-Music/releases" style="color:var(--amber); text-decoration:underline;">GitHub Releases</a>.</p>`;
       }
     });
   </script>
