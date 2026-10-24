@@ -4,42 +4,52 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>Terms of Service — Pulse Music</title>
+  <meta name="description" content="Terms for the Pulse Music Android app and website, including third-party streaming providers, unofficial APIs, updates, and GPL-3.0 website licensing.">
   <meta name="theme-color" content="#080808">
   <meta name="google-site-verification" content="JyQ0RfcWv91lmKpfq5ZWkhb3wTgpCK6mlrlQBF23X3k" />
-  
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://pulseapp-music.vercel.app/terms/">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Terms of Service — Pulse Music">
+  <meta property="og:description" content="Terms for the Pulse Music app and website, including third-party providers, unofficial APIs, updates, and licensing.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pulseapp-music.vercel.app/terms/">
+  <meta property="og:image" content="https://pulseapp-music.vercel.app/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Pulse Music — Music beyond silence.">
+  <meta property="og:site_name" content="Pulse Music">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Terms of Service — Pulse Music">
+  <meta name="twitter:description" content="Terms for the Pulse Music app and website, including third-party providers, unofficial APIs, updates, and licensing.">
+  <meta name="twitter:image" content="https://pulseapp-music.vercel.app/assets/og-image.png">
+  <meta name="twitter:image:alt" content="Pulse Music — Music beyond silence.">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="css/style.css">
-  
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23FFB300'/><path d='M20 50h15l10-25 15 50 10-25h10' stroke='%23080808' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
 
-  <script>
-    (function() {
-      try {
-        var loc = window.location;
-        var path = loc.pathname;
-        if (path.endsWith('/index.html')) {
-          path = path.replace(/\/index\.html$/, '/');
-        } else if (path.endsWith('index.html')) {
-          path = path.replace(/index\.html$/, '');
-          if (!path) path = '/';
-        } else if (path.endsWith('.html')) {
-          var base = path.replace(/\.html$/, '');
-          path = base.endsWith('/') ? base : base + '/';
-        } else {
-          var lastSeg = path.split('/').pop();
-          if (!path.endsWith('/') && lastSeg && lastSeg.indexOf('.') === -1) {
-            path = path + '/';
-          }
-        }
-        if (path !== loc.pathname) {
-          window.history.replaceState(null, '', path + loc.search + loc.hash);
-        }
-      } catch(e) {}
-    })();
+  <link rel="stylesheet" href="../css/style.css">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23FFB300'/><path d='M20 50h15l10-25 15 50 10-25h10' stroke='%23080808' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+  <link rel="apple-touch-icon" href="../assets/app_icon-192.png">
+
+  <script>document.documentElement.classList.add('js');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Pulse Music",
+    "description": "Open-source Android music player with multi-source streaming, offline playback, and Pulse JAM synchronized listening rooms.",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "Android",
+    "softwareVersion": "2.7.1",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "downloadUrl": "https://github.com/chriz-3656/Pulse-Music/releases/latest",
+    "url": "https://pulseapp-music.vercel.app/"
+  }
   </script>
 
   <style>
@@ -79,11 +89,16 @@
 </head>
 <body>
 
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
   <!-- Navigation -->
   <header>
     <div class="container nav-container">
-      <a href="../" class="logo-link">
-        <img src="../assets/app_icon.png" alt="Pulse Logo" class="logo-icon" style="border-radius: 20%; object-fit: cover;">
+      <a href="../" class="logo-link" aria-label="Pulse Music home">
+        <picture>
+          <source type="image/webp" srcset="../assets/app_icon-64.webp 64w, ../assets/app_icon-192.webp 192w" sizes="32px">
+          <img src="../assets/app_icon-64.png" alt="" class="logo-icon" width="32" height="32" decoding="async" style="border-radius: 20%; object-fit: cover;">
+        </picture>
         PULSE
       </a>
       
@@ -98,11 +113,11 @@
       </nav>
       
       <div class="nav-actions">
-        <a href="#" class="btn btn-secondary" id="nav-github-btn">GitHub</a>
+        <a href="https://github.com/chriz-3656/Pulse-Music" class="btn btn-secondary" id="nav-github-btn">GitHub</a>
         <a href="../#download" class="btn btn-primary btn-download">Download</a>
       </div>
       
-      <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <button class="hamburger" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
         <span></span>
         <span></span>
         <span></span>
@@ -111,7 +126,7 @@
   </header>
 
   <!-- Mobile Nav -->
-  <nav class="mobile-nav">
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" aria-hidden="true" inert>
     <a href="../" class="mobile-link">Home</a>
     <a href="../#features" class="mobile-link">Features</a>
     <a href="../about/" class="mobile-link">About</a>
@@ -119,35 +134,43 @@
     <a href="../#player" class="mobile-link">Player</a>
     <a href="../#library" class="mobile-link">Library</a>
     <a href="../#download" class="mobile-link btn btn-primary">Download</a>
-    <a href="#" class="mobile-link btn btn-secondary" id="mobile-github-btn">GitHub</a>
+    <a href="https://github.com/chriz-3656/Pulse-Music" class="mobile-link btn btn-secondary" id="mobile-github-btn">GitHub</a>
   </nav>
 
-  <main class="legal-content">
+  <main class="legal-content" id="main-content">
     <div class="legal-container reveal">
       <h1>Terms of Service</h1>
-      <span class="last-updated">LAST UPDATED: OCTOBER 2026 (v2.7.0)</span>
-      
-      <h2>1. Terms</h2>
-      <p>By accessing or using the Pulse Music application and website, you agree to be bound by these Terms of Service, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws.</p>
-      
-      <h2>2. Use License</h2>
-      <p>Permission is granted to download and use the Pulse Music application for personal, non-commercial listening and offline playback. Pulse Music is an open-source project distributed under the open terms of its repository license.</p>
+      <span class="last-updated">LAST UPDATED: OCTOBER 23, 2026 (v2.7.1)</span>
 
-      <h2>3. Disclaimer</h2>
-      <p>The materials within Pulse Music are provided on an 'as is' basis. Pulse Music makes no warranties, expressed or implied, and hereby disclaims all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property.</p>
-      <p>Pulse Music acts as an open client for public audio streaming services. Pulse Music does not host or distribute copyrighted audio files on its own servers.</p>
+      <h2>1. Acceptance</h2>
+      <p>By accessing this website or using the Pulse Music Android application, you agree to these Terms of Service and to comply with applicable laws. If you do not agree, do not use the app or website.</p>
 
-      <h2>4. Limitations</h2>
-      <p>In no event shall Pulse Music or its developers be liable for any damages arising out of the use or inability to use the Pulse Music application.</p>
+      <h2>2. Unofficial Client and Third-Party Services</h2>
+      <p>Pulse Music is an independent, unofficial client. It is not affiliated with, endorsed by, or sponsored by YouTube, Google, JioSaavn, SoundCloud, Firebase, or any other streaming provider. Provider names are used only to describe interoperability.</p>
+      <p>The app uses third-party APIs, public endpoints, and provider integrations that may be unofficial, undocumented, or subject to change. Streams, metadata, downloads, and provider availability are not controlled by Pulse Music and may stop working at any time. You are responsible for complying with each provider's terms and with the copyright and other laws that apply where you live. Do not use Pulse Music to infringe copyright or to bypass provider restrictions.</p>
+      <p>Pulse Music does not host or distribute copyrighted audio on its own servers. Downloads are requested directly from third-party services or GitHub Releases.</p>
 
-      <h2>5. Accuracy of Materials</h2>
-      <p>The materials appearing in the Pulse Music application or website could include technical, typographical, or photographic errors. Pulse Music does not warrant that all materials on its website are complete or current at any given second, though we strive for maximum accuracy.</p>
+      <h2>3. Open-Source Licenses</h2>
+      <p>The Pulse Music Android application is distributed under the GNU General Public License version 3 (GPL-3.0), matching its source repository. The source code for this website is also licensed under GPL-3.0; the full text is available in the <a href="../LICENSE.txt">LICENSE file</a>.</p>
+      <p>These licenses govern your rights to use, study, modify, and redistribute the corresponding source code. Nothing in these Terms restricts rights granted by those licenses. The software is provided without warranty, as described in the applicable license.</p>
 
-      <h2>6. Links</h2>
-      <p>Pulse Music has not reviewed all of the external links referenced in third-party search results and is not responsible for the contents of any external provider site. Use of any linked service is at the user's own risk.</p>
+      <h2>4. Acceptable Use</h2>
+      <p>You agree not to use the app or website to break the law, infringe intellectual property, harass other listeners, distribute malware, overload provider or Firebase infrastructure, or interfere with Pulse JAM rooms you do not administer. We may remove rooms or restrict access when necessary to protect the service or other users.</p>
 
-      <h2>7. Modifications</h2>
-      <p>Pulse Music may revise these Terms of Service at any time without notice. By using this application or website you agree to be bound by the then-current version of these Terms of Service.</p>
+      <h2>5. Updates and Installation</h2>
+      <p>Pulse Music can check GitHub Releases for updates and download an APK when you ask it to. Installation is performed by Android's package installer after you confirm it; you may need to allow installs from unknown sources. Sideloaded software carries risk, so verify that downloads come from the official <a href="https://github.com/chriz-3656/Pulse-Music" target="_blank" rel="noopener noreferrer">GitHub repository</a>. Updates may add, change, or remove features and may require you to accept updated terms.</p>
+
+      <h2>6. Disclaimer of Warranties</h2>
+      <p>The app and website are provided on an "as is" and "as available" basis. To the maximum extent permitted by law, Pulse Music disclaims all warranties, express or implied, including merchantability, fitness for a particular purpose, non-infringement, and uninterrupted or error-free operation. Provider outages, stream failures, data loss, and device issues are possible.</p>
+
+      <h2>7. Limitation of Liability</h2>
+      <p>To the maximum extent permitted by law, Pulse Music and its contributors are not liable for indirect, incidental, special, consequential, or punitive damages, or for lost data, lost profits, or provider claims arising from your use of the app or website. Nothing in these Terms limits liability that cannot be limited by law.</p>
+
+      <h2>8. External Links</h2>
+      <p>The app and website link to third-party sites and services, including streaming providers, Firebase, Google Fonts, and GitHub. We do not control and are not responsible for their content, availability, or privacy practices. Use them at your own risk and review their terms.</p>
+
+      <h2>9. Changes and Contact</h2>
+      <p>We may revise these Terms as the project changes. The date and version above identify the current version, and continued use after changes means you accept the revised Terms. Questions can be raised through an issue or discussion on the official <a href="https://github.com/chriz-3656/Pulse-Music" target="_blank" rel="noopener noreferrer">GitHub repository</a>.</p>
     </div>
   </main>
 
@@ -156,8 +179,11 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="../" class="logo-link">
-            <img src="../assets/app_icon.png" alt="Pulse Logo" class="logo-icon" style="border-radius: 20%; object-fit: cover;">
+          <a href="../" class="logo-link" aria-label="Pulse Music home">
+            <picture>
+              <source type="image/webp" srcset="../assets/app_icon-64.webp 64w, ../assets/app_icon-192.webp 192w" sizes="32px">
+              <img src="../assets/app_icon-64.png" alt="" class="logo-icon" width="32" height="32" decoding="async" style="border-radius: 20%; object-fit: cover;">
+            </picture>
             PULSE
           </a>
           <p>Music beyond silence.</p>
@@ -177,22 +203,23 @@
         <div class="footer-links">
           <h5>LINKS</h5>
           <ul>
-            <li><a href="#" id="footer-github-link">GitHub</a></li>
+            <li><a href="https://github.com/chriz-3656/Pulse-Music" id="footer-github-link">GitHub</a></li>
             <li><a href="../privacy/">Privacy Policy</a></li>
-            <li><a href="./">Terms of Service</a></li>
+            <li><a href="../terms/" aria-current="page">Terms of Service</a></li>
+            <li><a href="../LICENSE.txt">GPL-3.0 License</a></li>
           </ul>
         </div>
       </div>
       
       <div class="footer-bottom">
         <div>
-          &copy; <span id="current-year"></span> Pulse Music. All rights reserved.<br>
+          &copy; <span id="current-year"></span> Pulse Music. Website source licensed under GPL-3.0.<br>
           <span style="color:var(--text-muted); font-size: 0.75rem; margin-top: 4px; display: inline-block;">
             An open source 3rd party streaming app. Developed by <a href="https://github.com/chriz-3656" target="_blank" rel="noopener noreferrer" style="color:var(--amber); text-decoration:underline;">chriz-3656</a>.
           </span>
         </div>
         <div class="footer-tech">
-          Pulse Music <span class="app-version">v2.7.0</span><br>
+          Pulse Music <span class="app-version">v2.7.1</span><br>
           Android Music Client
         </div>
       </div>

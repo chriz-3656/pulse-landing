@@ -12,7 +12,7 @@
 
   --text: #F5F5F5;
   --text-secondary: #A5A5A5;
-  --text-muted: #6F6F6F;
+  --text-muted: #9A9A9A;
 
   --border: rgba(255, 179, 0, 0.18);
   --border-subtle: rgba(255, 255, 255, 0.05);
@@ -48,6 +48,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-height) + 16px);
   font-size: 16px;
 }
 
@@ -70,6 +71,27 @@ a {
 a:focus-visible, button:focus-visible {
   outline: 2px solid var(--amber);
   outline-offset: 2px;
+}
+
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 16px;
+  z-index: 1000;
+  padding: 12px 20px;
+  background: var(--amber);
+  color: #080808;
+  font-weight: 700;
+  border-radius: 4px;
+  transform: translateY(-160%);
+  transition: transform var(--transition-fast);
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid #fff;
+  outline-offset: 3px;
 }
 
 ul {
@@ -195,6 +217,10 @@ header {
   letter-spacing: 0.05em;
 }
 
+.logo-link picture {
+  display: flex;
+}
+
 .logo-icon {
   width: 32px;
   height: 32px;
@@ -257,12 +283,17 @@ header {
   align-items: center;
   gap: 32px;
   transform: translateY(-100%);
-  transition: transform var(--transition-normal);
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform var(--transition-normal), visibility 0s linear 300ms;
   padding: 24px;
 }
 
 .mobile-nav.is-open {
   transform: translateY(0);
+  visibility: visible;
+  pointer-events: auto;
+  transition: transform var(--transition-normal), visibility 0s linear 0s;
 }
 
 .mobile-nav a {
@@ -519,6 +550,11 @@ header {
 }
 .showcase-card.image-card {
   padding: 0;
+}
+.showcase-card picture {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 .showcase-label {
   position: absolute;
@@ -820,12 +856,13 @@ footer {
 }
 
 /* Utilities / Animations */
-.reveal {
+/* Only hide reveal content when JavaScript is available to reveal it again. */
+.js .reveal {
   opacity: 0;
   transform: translateY(30px);
-  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.reveal.active {
+.js .reveal.active {
   opacity: 1;
   transform: translateY(0);
 }
@@ -875,13 +912,18 @@ footer {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* Developer Section */
 .developer-card {
   display: flex;
-  background: var(--recessed);
-  border: 1px solid var(--chrome-dark);
+  background: var(--surface);
+  border: 1px solid var(--surface-light);
   border-radius: 16px;
   padding: 32px;
   gap: 32px;
@@ -1093,7 +1135,7 @@ footer {
   cursor: pointer;
   transition: all 0.3s ease;
   color: var(--text-muted);
-  opacity: 0.5;
+  opacity: 0.75;
 }
 
 .teleprompter-line:hover {

@@ -8,13 +8,61 @@ if (typeof window.__PULSE_MAIN_INITIALIZED === 'undefined') {
 
 // Configuration Constants
 const CONFIG = {
-  DOWNLOAD_URL: "https://github.com/chriz-3656/Pulse-Music/releases/download/v2.7.0/PulseMusic-v2.7.0.apk",
+  DOWNLOAD_URL: "https://github.com/chriz-3656/Pulse-Music/releases/latest",
   GITHUB_URL: "https://github.com/chriz-3656/Pulse-Music"
 };
 
+// GitHub's unauthenticated API allows 60 requests per hour per IP. Cache the
+// few public responses we need for 10 minutes so a page visit does not burn
+// through that budget. No token or credential is ever stored or exposed.
+const CACHE_TTL = 10 * 60 * 1000;
+const CACHE_PREFIX = 'pulse_github_cache_v1:';
+
+function readCache(key) {
+  try {
+    const raw = localStorage.getItem(CACHE_PREFIX + key);
+    if (!raw) return null;
+    const entry = JSON.parse(raw);
+    if (!entry || typeof entry.cachedAt !== 'number' || Date.now() - entry.cachedAt > CACHE_TTL) {
+      localStorage.removeItem(CACHE_PREFIX + key);
+      return null;
+    }
+    return entry.data;
+  } catch (e) {
+    return null;
+  }
+}
+
+function writeCache(key, data) {
+  try {
+    localStorage.setItem(CACHE_PREFIX + key, JSON.stringify({
+      cachedAt: Date.now(),
+      data
+    }));
+  } catch (e) {
+    // Storage can be unavailable in private windows or when the quota is full.
+  }
+}
+
+async function fetchCachedJSON(url, cacheKey) {
+  const cached = readCache(cacheKey);
+  if (cached) return cached;
+
+  const response = await fetch(url, {
+    headers: { 'Accept': 'application/vnd.github+json' }
+  });
+  if (!response.ok) {
+    throw new Error(`GitHub API request failed: ${response.status}`);
+  }
+  const data = await response.json();
+  writeCache(cacheKey, data);
+  return data;
+}
+
 /**
- * Clean URL: automatically hide .html and /index.html in the address bar
- * and normalize directory subpages with trailing slash.
+ * Clean URL: automatically hide .html and /index.html in the address bar.
+ * Server-side trailing-slash redirects handle directory URLs, so unknown
+ * paths (including the 404 page) are left untouched.
  */
 function cleanAddressBarUrl() {
   try {
@@ -25,14 +73,9 @@ function cleanAddressBarUrl() {
     } else if (path.endsWith('index.html')) {
       path = path.replace(/index\.html$/, '');
       if (!path) path = '/';
-    } else if (path.endsWith('.html')) {
+    } else if (path.endsWith('.html') && !/\/404\.html$/.test(path)) {
       const base = path.replace(/\.html$/, '');
       path = base.endsWith('/') ? base : base + '/';
-    } else {
-      const lastSeg = path.split('/').pop();
-      if (!path.endsWith('/') && lastSeg && !lastSeg.includes('.')) {
-        path = path + '/';
-      }
     }
     if (path !== loc.pathname) {
       window.history.replaceState(null, '', path + loc.search + loc.hash);
@@ -63,24 +106,25 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 async function fetchDeveloperInfo() {
   try {
-    const response = await fetch('https://api.github.com/users/chriz-3656');
-    if (response.ok) {
-      const data = await response.json();
-      
-      const avatarEl = document.getElementById('dev-avatar');
-      const nameEl = document.getElementById('dev-name');
-      const bioEl = document.getElementById('dev-bio');
-      const reposEl = document.getElementById('dev-repos');
-      const followersEl = document.getElementById('dev-followers');
-      
-      if (avatarEl) avatarEl.src = data.avatar_url;
-      if (nameEl) nameEl.textContent = data.name || data.login;
-      if (bioEl && data.bio) bioEl.textContent = data.bio;
-      if (reposEl) reposEl.textContent = data.public_repos;
-      if (followersEl) followersEl.textContent = data.followers;
+    const data = await fetchCachedJSON('https://api.github.com/users/chriz-3656', 'developer');
+
+    const avatarEl = document.getElementById('dev-avatar');
+    const nameEl = document.getElementById('dev-name');
+    const bioEl = document.getElementById('dev-bio');
+    const reposEl = document.getElementById('dev-repos');
+    const followersEl = document.getElementById('dev-followers');
+
+    if (avatarEl && data.avatar_url) {
+      const separator = data.avatar_url.includes('?') ? '&' : '?';
+      avatarEl.src = `${data.avatar_url}${separator}s=150`;
+      avatarEl.srcset = `${data.avatar_url}${separator}s=150 1x, ${data.avatar_url}${separator}s=300 2x`;
     }
+    if (nameEl) nameEl.textContent = data.name || data.login;
+    if (bioEl && data.bio) bioEl.textContent = data.bio;
+    if (reposEl) reposEl.textContent = data.public_repos;
+    if (followersEl) followersEl.textContent = data.followers;
   } catch (error) {
-    console.error('Failed to fetch developer info:', error);
+    console.warn('Failed to fetch developer info; keeping static fallback.', error);
   }
 }
 
@@ -89,37 +133,27 @@ async function fetchDeveloperInfo() {
  */
 async function fetchLatestRelease() {
   try {
-    // Adding a timestamp to prevent aggressive browser caching of the GitHub API response
-    const cacheBuster = new Date().getTime();
-    const response = await fetch(`https://api.github.com/repos/chriz-3656/Pulse-Music/releases/latest?t=${cacheBuster}`);
-    if (response.ok) {
-      const data = await response.json();
-      const apkAsset = data.assets.find(asset => asset.name.endsWith('.apk') && !asset.name.includes('-debug'));
-      if (apkAsset) {
-        CONFIG.DOWNLOAD_URL = apkAsset.browser_download_url;
-        setupLinks(); // Refresh links with new URL
-        
-        // Update any version indicators if they exist
-        const versionElements = document.querySelectorAll('.app-version');
-        versionElements.forEach(el => {
-          el.textContent = data.tag_name;
-        });
-        
-        // Update total downloads indicator
-        const downloadCountEl = document.getElementById('download-count');
-        if (downloadCountEl && apkAsset.download_count !== undefined) {
-           downloadCountEl.textContent = `${apkAsset.download_count} DOWNLOADS`;
-        }
-        
-        // You can also add the tag name to the download button text
-        const mainDownloadBtn = document.getElementById('bottom-download-btn');
-        if (mainDownloadBtn) {
-          mainDownloadBtn.textContent = `DOWNLOAD ${data.tag_name}`;
-        }
+    const data = await fetchCachedJSON(
+      'https://api.github.com/repos/chriz-3656/Pulse-Music/releases/latest',
+      'latest-release'
+    );
+    const apkAsset = data.assets && data.assets.find(asset =>
+      asset.name.endsWith('.apk') && !asset.name.includes('-debug')
+    );
+
+    if (apkAsset) {
+      CONFIG.DOWNLOAD_URL = apkAsset.browser_download_url;
+      setupLinks(); // Refresh links with the current APK URL
+
+      // Update total downloads indicator. Version text stays static so the page
+      // never displays an older GitHub tag than the site's stated app version.
+      const downloadCountEl = document.getElementById('download-count');
+      if (downloadCountEl && apkAsset.download_count !== undefined) {
+        downloadCountEl.textContent = `${apkAsset.download_count.toLocaleString()} DOWNLOADS`;
       }
     }
   } catch (error) {
-    console.error('Failed to fetch latest release:', error);
+    console.warn('Failed to fetch latest release; keeping static fallback links.', error);
   }
 }
 
@@ -135,7 +169,7 @@ function initNavigation() {
     hamburger.addEventListener('click', () => {
       const isOpen = mobileNav.classList.contains('is-open');
       if (isOpen) {
-        closeMenu();
+        closeMenu(true);
       } else {
         openMenu();
       }
@@ -143,14 +177,32 @@ function initNavigation() {
 
     mobileLinks.forEach(link => {
       link.addEventListener('click', () => {
-        closeMenu();
+        closeMenu(false);
       });
     });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && mobileNav.classList.contains('is-open')) {
+        closeMenu(true);
+      }
+    });
+  }
+
+  function setMenuInert(isInert) {
+    mobileNav.inert = isInert;
+    if (isInert) {
+      mobileNav.setAttribute('inert', '');
+      mobileNav.setAttribute('aria-hidden', 'true');
+    } else {
+      mobileNav.removeAttribute('inert');
+      mobileNav.setAttribute('aria-hidden', 'false');
+    }
   }
 
   function openMenu() {
     mobileNav.classList.add('is-open');
     hamburger.setAttribute('aria-expanded', 'true');
+    setMenuInert(false);
     // Transform hamburger icon to X
     const spans = hamburger.querySelectorAll('span');
     spans[0].style.transform = 'translateY(8px) rotate(45deg)';
@@ -158,14 +210,22 @@ function initNavigation() {
     spans[2].style.transform = 'translateY(-8px) rotate(-45deg)';
   }
 
-  function closeMenu() {
+  function closeMenu(returnFocus) {
     mobileNav.classList.remove('is-open');
     hamburger.setAttribute('aria-expanded', 'false');
+    setMenuInert(true);
     // Reset hamburger icon
     const spans = hamburger.querySelectorAll('span');
     spans[0].style.transform = 'none';
     spans[1].style.opacity = '1';
     spans[2].style.transform = 'none';
+    if (returnFocus) hamburger.focus();
+  }
+
+  // Start with the menu out of the tab order even if the markup attribute was
+  // omitted by a template or an old cached copy.
+  if (hamburger && mobileNav) {
+    setMenuInert(true);
   }
 }
 
@@ -538,22 +598,56 @@ function initTeleprompter() {
  * Hardware FAQ Accordion
  */
 function initFAQAccordion() {
-  const faqItems = document.querySelectorAll('.faq-item');
-  faqItems.forEach(item => {
+  const faqItems = Array.from(document.querySelectorAll('.faq-item'));
+
+  faqItems.forEach((item, index) => {
     const questionBtn = item.querySelector('.faq-question');
-    if (!questionBtn) return;
+    const answer = item.querySelector('.faq-answer');
+    if (!questionBtn || !answer) return;
+
+    if (!questionBtn.id) questionBtn.id = `faq-question-${index + 1}`;
+    if (!answer.id) answer.id = `faq-answer-${index + 1}`;
+
+    questionBtn.setAttribute('aria-controls', answer.id);
+    questionBtn.setAttribute('aria-expanded', 'false');
+    answer.setAttribute('role', 'region');
+    answer.setAttribute('aria-labelledby', questionBtn.id);
+    answer.setAttribute('aria-hidden', 'true');
+    answer.hidden = true;
 
     questionBtn.addEventListener('click', () => {
       playMechanicalClick();
-      const isOpen = item.classList.contains('open');
+      const willOpen = !item.classList.contains('open');
 
-      // Close other open items
-      faqItems.forEach(i => i.classList.remove('open'));
-
-      if (!isOpen) {
-        item.classList.add('open');
-      }
+      // Close other open items, then toggle this one.
+      faqItems.forEach(other => setItemState(other, false));
+      setItemState(item, willOpen);
     });
   });
+
+  function setItemState(item, isOpen) {
+    const button = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
+    if (!button || !answer) return;
+
+    if (answer._hideTimer) {
+      clearTimeout(answer._hideTimer);
+      answer._hideTimer = null;
+    }
+
+    item.classList.toggle('open', isOpen);
+    button.setAttribute('aria-expanded', String(isOpen));
+    answer.setAttribute('aria-hidden', String(!isOpen));
+
+    if (isOpen) {
+      answer.hidden = false;
+    } else {
+      // Let the closing transition finish before removing the answer from the
+      // accessibility tree entirely.
+      answer._hideTimer = setTimeout(() => {
+        if (!item.classList.contains('open')) answer.hidden = true;
+      }, 350);
+    }
+  }
 }
 } // End __PULSE_MAIN_INITIALIZED

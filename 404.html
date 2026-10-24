@@ -3,34 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>404 — Frequency Not Found | Pulse Music</title>
+  <title>404 — Page Not Found | Pulse Music</title>
+  <meta name="description" content="The page you requested could not be found on the Pulse Music website.">
   <meta name="theme-color" content="#080808">
+  <meta name="robots" content="noindex, follow">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="/css/style.css">
   
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23FFB300'/><path d='M20 50h15l10-25 15 50 10-25h10' stroke='%23080808' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+  <link rel="apple-touch-icon" href="/assets/app_icon-192.png">
 
-  <script>
-    // Intelligent Clean URL Router for GitHub Pages / Static Hosting
-    (function() {
-      try {
-        var path = window.location.pathname;
-        var clean = path.replace(/\/$/, '').replace(/\.html$/, '');
-        var seg = clean.split('/').pop().toLowerCase();
-        
-        var routes = ['about', 'changelog', 'privacy', 'terms'];
-        if (routes.indexOf(seg) !== -1) {
-          // Reconstruct destination with trailing slash
-          var basePath = path.substring(0, path.lastIndexOf(seg));
-          var target = basePath + seg + '/' + window.location.search + window.location.hash;
-          window.location.replace(target);
-        }
-      } catch(e) {}
-    })();
-  </script>
+  <script>document.documentElement.classList.add('js');</script>
 
   <style>
     .not-found-container {
@@ -75,40 +61,63 @@
 </head>
 <body>
 
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
   <!-- Navigation -->
   <header>
     <div class="container nav-container">
-      <a href="./" class="logo-link">
-        <img src="assets/app_icon.png" alt="Pulse Logo" class="logo-icon" style="border-radius: 20%; object-fit: cover;">
+      <a href="/" class="logo-link" aria-label="Pulse Music home">
+        <picture>
+          <source type="image/webp" srcset="/assets/app_icon-64.webp 64w, /assets/app_icon-192.webp 192w" sizes="32px">
+          <img src="/assets/app_icon-64.png" alt="" class="logo-icon" width="32" height="32" decoding="async" style="border-radius: 20%; object-fit: cover;">
+        </picture>
         PULSE
       </a>
       
       <nav class="nav-links">
-        <a href="./">Home</a>
-        <a href="./#features">Features</a>
-        <a href="about/">About</a>
-        <a href="changelog/">Changelog</a>
-        <a href="./#player">Player</a>
-        <a href="./#library">Library</a>
-        <a href="./#download">Download</a>
+        <a href="/">Home</a>
+        <a href="/#features">Features</a>
+        <a href="/about/">About</a>
+        <a href="/changelog/">Changelog</a>
+        <a href="/#player">Player</a>
+        <a href="/#library">Library</a>
+        <a href="/#download">Download</a>
       </nav>
       
       <div class="nav-actions">
-        <a href="#" class="btn btn-secondary" id="nav-github-btn">GitHub</a>
+        <a href="https://github.com/chriz-3656/Pulse-Music" class="btn btn-secondary" id="nav-github-btn">GitHub</a>
       </div>
+
+      <button class="hamburger" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </header>
 
-  <main class="not-found-container reveal active">
+  <!-- Mobile Nav -->
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" aria-hidden="true" inert>
+    <a href="/" class="mobile-link">Home</a>
+    <a href="/#features" class="mobile-link">Features</a>
+    <a href="/about/" class="mobile-link">About</a>
+    <a href="/changelog/" class="mobile-link">Changelog</a>
+    <a href="/#player" class="mobile-link">Player</a>
+    <a href="/#library" class="mobile-link">Library</a>
+    <a href="/#download" class="mobile-link btn btn-primary">Download</a>
+    <a href="https://github.com/chriz-3656/Pulse-Music" class="mobile-link btn btn-secondary" id="mobile-github-btn">GitHub</a>
+  </nav>
+
+  <main class="not-found-container reveal active" id="main-content">
     <div class="status-code">404</div>
     <div class="status-label">SIGNAL LOST • FREQUENCY OUT OF RANGE</div>
     <p class="not-found-desc">
       The track, crate, or frequency you are looking for has been moved, unmounted, or does not exist in this analog deck.
     </p>
     <div class="cta-row">
-      <a href="./" class="btn btn-primary">RETURN TO DECK (HOME)</a>
-      <a href="about/" class="btn btn-secondary">READ ABOUT PULSE</a>
-      <a href="changelog/" class="btn btn-secondary">VIEW RELEASES</a>
+      <a href="/" class="btn btn-primary">RETURN TO DECK (HOME)</a>
+      <a href="/about/" class="btn btn-secondary">READ ABOUT PULSE</a>
+      <a href="/changelog/" class="btn btn-secondary">VIEW RELEASES</a>
     </div>
   </main>
 
@@ -117,8 +126,11 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="./" class="logo-link">
-            <img src="assets/app_icon.png" alt="Pulse Logo" class="logo-icon" style="border-radius: 20%; object-fit: cover;">
+          <a href="/" class="logo-link" aria-label="Pulse Music home">
+            <picture>
+              <source type="image/webp" srcset="/assets/app_icon-64.webp 64w, /assets/app_icon-192.webp 192w" sizes="32px">
+              <img src="/assets/app_icon-64.png" alt="" class="logo-icon" width="32" height="32" decoding="async" style="border-radius: 20%; object-fit: cover;">
+            </picture>
             PULSE
           </a>
           <p>Music beyond silence.</p>
@@ -126,34 +138,56 @@
         <div class="footer-links">
           <h5>NAVIGATION</h5>
           <ul>
-            <li><a href="./">Home</a></li>
-            <li><a href="./#features">Features</a></li>
-            <li><a href="about/">About</a></li>
-            <li><a href="changelog/">Changelog</a></li>
-            <li><a href="./#download">Download</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/#features">Features</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/changelog/">Changelog</a></li>
+            <li><a href="/#download">Download</a></li>
           </ul>
         </div>
         <div class="footer-links">
           <h5>LINKS</h5>
           <ul>
-            <li><a href="#" id="footer-github-link">GitHub</a></li>
-            <li><a href="privacy/">Privacy Policy</a></li>
-            <li><a href="terms/">Terms of Service</a></li>
+            <li><a href="https://github.com/chriz-3656/Pulse-Music" id="footer-github-link">GitHub</a></li>
+            <li><a href="/privacy/">Privacy Policy</a></li>
+            <li><a href="/terms/">Terms of Service</a></li>
+            <li><a href="/LICENSE.txt">GPL-3.0 License</a></li>
           </ul>
         </div>
       </div>
       
       <div class="footer-bottom">
         <div>
-          &copy; <span id="current-year"></span> Pulse Music. All rights reserved.<br>
+          &copy; <span id="current-year"></span> Pulse Music. Website source licensed under GPL-3.0.<br>
+          <span style="color:var(--text-muted); font-size: 0.75rem; margin-top: 4px; display: inline-block;">
+            An open source 3rd party streaming app. Developed by <a href="https://github.com/chriz-3656" target="_blank" rel="noopener noreferrer" style="color:var(--amber); text-decoration:underline;">chriz-3656</a>.
+          </span>
         </div>
         <div class="footer-tech">
-          Pulse Music <span class="app-version">v2.7.0</span><br>
+          Pulse Music <span class="app-version">v2.7.1</span><br>
+          Android Music Client
         </div>
       </div>
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="/js/main.js"></script>
+  <script>
+    // The Vercel deployment serves this file at arbitrary paths, so its links are
+    // root-absolute. The GitHub Pages mirror lives under /pulse-landing/, so
+    // rewrite those links when the page is served from github.io.
+    (function () {
+      if (!location.hostname.endsWith('github.io')) return;
+      var prefix = '/pulse-landing';
+      document.querySelectorAll('[href^="/"]:not([href^="//"]), [src^="/"]:not([src^="//"])').forEach(function (el) {
+        ['href', 'src'].forEach(function (attr) {
+          if (el.hasAttribute(attr)) el.setAttribute(attr, prefix + el.getAttribute(attr));
+        });
+      });
+      document.querySelectorAll('[srcset^="/"]').forEach(function (el) {
+        el.setAttribute('srcset', el.getAttribute('srcset').replace(/(^|,\s*)\//g, '$1' + prefix + '/'));
+      });
+    })();
+  </script>
 </body>
 </html>

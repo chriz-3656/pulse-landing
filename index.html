@@ -4,62 +4,79 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>Pulse Music — Music Beyond Silence</title>
-  <meta name="description" content="Pulse Music is a modern, open-source Android music player featuring a Neumorphic design, Hi-Fi audio streaming, and Pulse JAM live synchronized rooms. Developed by Chris Mon Saji.">
-    <meta name="keywords" content="Pulse Music, Android Music Player, Neumorphic UI, Skeuomorphic, Open Source, Pulse JAM, Live Sync, Chris Mon Saji">
-    <meta name="author" content="Chris Mon Saji">
-    <meta name="robots" content="index, follow">
+  <meta name="description" content="Pulse Music is an open-source Android music player with multi-source streaming, offline downloads, Pulse JAM synchronized listening rooms, and a tactile Hi-Fi interface.">
   <meta name="theme-color" content="#080808">
   <meta name="google-site-verification" content="JyQ0RfcWv91lmKpfq5ZWkhb3wTgpCK6mlrlQBF23X3k" />
-  
-  <!-- Open Graph -->
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://pulseapp-music.vercel.app/">
+
+  <!-- Open Graph / Twitter -->
   <meta property="og:title" content="Pulse Music — Music Beyond Silence">
-  <meta property="og:description" content="An open source 3rd party multi-source music player built for people who care about the way music feels, sounds, and moves.">
+  <meta property="og:description" content="An open-source Android music player with multi-source streaming, offline downloads, and Pulse JAM synchronized listening rooms.">
   <meta property="og:type" content="website">
-  
-  <!-- SEO & Metadata -->
-  <meta name="keywords" content="Pulse Music, Android, Open Source, 3rd Party Streaming App, Music Player, chriz-3656, Hi-Fi, Offline Listening">
-  <meta name="author" content="chriz-3656">
-  <link rel="canonical" href="https://github.com/chriz-3656/Pulse-Music">
-  
+  <meta property="og:url" content="https://pulseapp-music.vercel.app/">
+  <meta property="og:image" content="https://pulseapp-music.vercel.app/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Pulse Music — Music beyond silence.">
+  <meta property="og:site_name" content="Pulse Music">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pulse Music — Music Beyond Silence">
+  <meta name="twitter:description" content="An open-source Android music player with multi-source streaming, offline downloads, and Pulse JAM synchronized listening rooms.">
+  <meta name="twitter:image" content="https://pulseapp-music.vercel.app/assets/og-image.png">
+  <meta name="twitter:image:alt" content="Pulse Music — Music beyond silence.">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23FFB300'/><path d='M20 50h15l10-25 15 50 10-25h10' stroke='%23080808' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+  <link rel="apple-touch-icon" href="assets/app_icon-192.png">
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  
+
   <!-- CSS -->
   <link rel="stylesheet" href="css/style.css">
-  
-  <!-- Favicon placeholder -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23FFB300'/><path d='M20 50h15l10-25 15 50 10-25h10' stroke='%23080808' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
 
-  <script>
-    (function() {
-      try {
-        var loc = window.location;
-        var path = loc.pathname;
-        if (path.endsWith('/index.html')) {
-          path = path.replace(/\/index\.html$/, '/');
-        } else if (path.endsWith('index.html')) {
-          path = path.replace(/index\.html$/, '');
-          if (!path) path = '/';
-        } else if (path.endsWith('.html')) {
-          var base = path.replace(/\.html$/, '');
-          path = base.endsWith('/') ? base : base + '/';
-        }
-        if (path !== loc.pathname) {
-          window.history.replaceState(null, '', path + loc.search + loc.hash);
-        }
-      } catch(e) {}
-    })();
+  <script>document.documentElement.classList.add('js');</script>
+
+  <noscript>
+    <style>
+      .faq-answer { display: block !important; max-height: none !important; overflow: visible !important; padding-bottom: 24px !important; }
+      .faq-toggle { display: none; }
+    </style>
+  </noscript>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Pulse Music",
+    "description": "Open-source Android music player with multi-source streaming, offline playback, and Pulse JAM synchronized listening rooms.",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "Android",
+    "softwareVersion": "2.7.1",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "downloadUrl": "https://github.com/chriz-3656/Pulse-Music/releases/latest",
+    "url": "https://pulseapp-music.vercel.app/"
+  }
   </script>
 </head>
 <body>
 
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
   <!-- Navigation -->
   <header>
     <div class="container nav-container">
-      <a href="#" class="logo-link">
-        <img src="assets/app_icon.png" alt="Pulse Logo" class="logo-icon" style="border-radius: 20%; object-fit: cover;">
+      <a href="./" class="logo-link" aria-label="Pulse Music home">
+        <picture>
+          <source type="image/webp" srcset="assets/app_icon-64.webp 64w, assets/app_icon-192.webp 192w" sizes="32px">
+          <img src="assets/app_icon-64.png" alt="" class="logo-icon" width="32" height="32" decoding="async" style="border-radius: 20%; object-fit: cover;">
+        </picture>
         PULSE
       </a>
       
@@ -89,10 +106,10 @@
             <span class="mono">GREEN</span>
           </button>
         </div>
-        <a href="#" class="btn btn-secondary" id="nav-github-btn">GitHub</a>
+        <a href="https://github.com/chriz-3656/Pulse-Music" class="btn btn-secondary" id="nav-github-btn">GitHub</a>
       </div>
       
-      <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <button class="hamburger" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
         <span></span>
         <span></span>
         <span></span>
@@ -101,7 +118,7 @@
   </header>
 
   <!-- Mobile Nav -->
-  <nav class="mobile-nav">
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" aria-hidden="true" inert>
     <div style="padding: 16px 24px; border-bottom: 1px solid var(--border-subtle);">
       <div class="deck-selector" style="width: 100%; justify-content: space-around;">
         <button class="deck-chip active" data-theme="amber">
@@ -122,10 +139,10 @@
     <a href="#player" class="mobile-link">Player</a>
     <a href="#library" class="mobile-link">Library</a>
     <a href="#faq" class="mobile-link">FAQ</a>
-    <a href="#" class="mobile-link btn btn-secondary" id="mobile-github-btn">GitHub</a>
+    <a href="https://github.com/chriz-3656/Pulse-Music" class="mobile-link btn btn-secondary" id="mobile-github-btn">GitHub</a>
   </nav>
 
-  <main>
+  <main id="main-content">
     <!-- Hero Section -->
     <section id="hero" class="hero">
       <div class="hero-bg"></div>
@@ -148,7 +165,7 @@
 
           <div class="hero-metadata mono">
             <div class="metadata-item">ANDROID</div>
-            <div class="metadata-item" id="download-count">HOTFIX RELEASE LIVE</div>
+            <div class="metadata-item" id="download-count">V2.7.1 RELEASE</div>
             <div class="metadata-item">MEDIA3</div>
             <div class="metadata-item">OFFLINE</div>
             <div class="metadata-item">HI-FI EXPERIENCE</div>
@@ -216,19 +233,31 @@
         
         <div class="showcase-grid reveal">
           <div class="showcase-card image-card">
-             <img src="assets/home.png" alt="Home UI" loading="lazy" style="width:100%; height:100%; object-fit:cover;">
+             <picture>
+               <source type="image/webp" srcset="assets/home-360.webp 360w, assets/home-720.webp 720w" sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 300px">
+               <img src="assets/home.png" alt="Pulse Music home screen with trending albums, curated mixes, and a playing track" width="720" height="1640" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover;">
+             </picture>
              <span class="showcase-label">HOME</span>
           </div>
           <div class="showcase-card image-card">
-             <img src="assets/search.png" alt="Search UI" loading="lazy" style="width:100%; height:100%; object-fit:cover;">
+             <picture>
+               <source type="image/webp" srcset="assets/search-360.webp 360w, assets/search-720.webp 720w" sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 300px">
+               <img src="assets/search.png" alt="Pulse Music search screen with provider results" width="720" height="1640" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover;">
+             </picture>
              <span class="showcase-label">SEARCH</span>
           </div>
           <div class="showcase-card image-card" style="border-color: var(--amber); box-shadow: 0 0 24px rgba(255,179,0,0.1);">
-             <img src="assets/nowplaying.png" alt="Now Playing UI" loading="lazy" style="width:100%; height:100%; object-fit:cover;">
+             <picture>
+               <source type="image/webp" srcset="assets/nowplaying-360.webp 360w, assets/nowplaying-720.webp 720w" sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 300px">
+               <img src="assets/nowplaying.png" alt="Pulse Music now playing screen with album art, lyrics, and playback controls" width="720" height="1640" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover;">
+             </picture>
              <span class="showcase-label">NOW PLAYING</span>
           </div>
           <div class="showcase-card image-card">
-             <img src="assets/library.png" alt="Library UI" loading="lazy" style="width:100%; height:100%; object-fit:cover;">
+             <picture>
+               <source type="image/webp" srcset="assets/library-360.webp 360w, assets/library-720.webp 720w" sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 300px">
+               <img src="assets/library.png" alt="Pulse Music library screen with playlists and downloaded music" width="720" height="1640" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover;">
+             </picture>
              <span class="showcase-label">LIBRARY</span>
           </div>
         </div>
@@ -568,7 +597,7 @@
         
         <div class="developer-card">
           <div class="dev-avatar-wrapper">
-            <img src="https://github.com/chriz-3656.png" alt="Developer Avatar" id="dev-avatar" class="dev-avatar">
+            <img src="https://github.com/chriz-3656.png?size=150" alt="Avatar of chriz-3656, the developer of Pulse Music" id="dev-avatar" class="dev-avatar" width="150" height="150" loading="lazy" decoding="async">
           </div>
           <div class="dev-info">
             <h3 id="dev-name">chriz-3656</h3>
@@ -587,13 +616,13 @@
     <section id="pulse-jam" style="padding: 100px 0; background: linear-gradient(180deg, var(--bg) 0%, rgba(255,193,7,0.05) 100%);">
       <div class="container reveal">
         <div style="background: rgba(255, 193, 7, 0.1); border: 1px solid var(--amber); border-radius: 24px; padding: 48px; text-align: center;">
-          <span style="background: var(--amber); color: #000; padding: 6px 12px; border-radius: 12px; font-weight: 800; font-size: 0.8rem; letter-spacing: 2px;">NEW IN V2.7.0</span>
+          <span style="background: var(--amber); color: #000; padding: 6px 12px; border-radius: 12px; font-weight: 800; font-size: 0.8rem; letter-spacing: 2px;">LATEST RELEASE · V2.7.1</span>
           <h2 class="section-title" style="margin-top: 24px;">PURE <span class="text-amber">OFFLINE</span> & LIVE DOWNLOAD QUEUE</h2>
           <p class="section-desc" style="max-width: 650px; margin: 0 auto 32px auto;">
-            Introducing <strong>Pure Offline Mode</strong> and <strong>Instant Download Tracking</strong> in Pulse Music v2.7.0. Zero background network requests on demand, real-time byte-streaming download progress, 1-tap full playlist/album downloads, and collaborative <strong>Pulse JAM</strong> sync listening.
+            Introducing <strong>Pure Offline Mode</strong> and <strong>Instant Download Tracking</strong> in Pulse Music v2.7.1. No online search or streaming requests while offline mode is active, real-time byte-streaming download progress, 1-tap full playlist/album downloads, and collaborative <strong>Pulse JAM</strong> sync listening.
           </p>
           <div class="download-actions" style="justify-content: center;">
-            <a href="https://github.com/chriz-3656/Pulse-Music/releases/latest" class="btn btn-primary" style="background: transparent !important; color: var(--amber) !important; border: 2px solid var(--amber) !important;">GET PULSE MUSIC V2.7.0</a>
+            <a href="https://github.com/chriz-3656/Pulse-Music/releases/latest" class="btn btn-primary" style="background: transparent !important; color: var(--amber) !important; border: 2px solid var(--amber) !important;">GET PULSE MUSIC V2.7.1</a>
           </div>
           <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 24px;">
             Features seamless mid-song seek carryover, synchronized playback handoffs, WakeLock background reliability, and language-affinity radio recommendations.
@@ -613,62 +642,62 @@
 
         <div class="faq-container reveal">
           <div class="faq-item">
-            <button class="faq-question">
+            <button class="faq-question" id="faq-question-1" type="button" aria-expanded="false" aria-controls="faq-answer-1">
               <span>Is Pulse Music completely free and ad-free?</span>
-              <span class="faq-toggle">+</span>
+              <span class="faq-toggle" aria-hidden="true">+</span>
             </button>
-            <div class="faq-answer">
-              <p>Yes, 100%. Pulse Music is an open-source project licensed under Apache 2.0. There are zero subscriptions, zero third-party advertisements, and no paywalled features. Everything is completely free out of the box.</p>
+            <div class="faq-answer" id="faq-answer-1" role="region" aria-labelledby="faq-question-1">
+              <p>Yes, 100%. The Pulse Music Android app is open source under GPL-3.0, and this website is open source under GPL-3.0. There are zero subscriptions, zero third-party advertisements, and no paywalled features.</p>
             </div>
           </div>
 
           <div class="faq-item">
-            <button class="faq-question">
+            <button class="faq-question" id="faq-question-2" type="button" aria-expanded="false" aria-controls="faq-answer-2">
               <span>Does Pulse Music require a Google, YouTube, or Spotify account?</span>
-              <span class="faq-toggle">+</span>
+              <span class="faq-toggle" aria-hidden="true">+</span>
             </button>
-            <div class="faq-answer">
-              <p>No account is required whatsoever. Pulse Music queries public stream endpoints anonymously without requiring signups or proprietary Google Play Services. Your listening history and crates remain private on your device.</p>
+            <div class="faq-answer" id="faq-answer-2" role="region" aria-labelledby="faq-question-2">
+              <p>No Google, YouTube, or Spotify account is required. Core playback and your local library work without sign-up. Pulse JAM rooms use Firebase Realtime Database and may use Firebase anonymous authentication to identify a room participant.</p>
             </div>
           </div>
 
           <div class="faq-item">
-            <button class="faq-question">
+            <button class="faq-question" id="faq-question-3" type="button" aria-expanded="false" aria-controls="faq-answer-3">
               <span>How does Dedicated Pure Offline Mode work?</span>
-              <span class="faq-toggle">+</span>
+              <span class="faq-toggle" aria-hidden="true">+</span>
             </button>
-            <div class="faq-answer">
-              <p>When you toggle Pure Offline Mode in Settings or on the Home banner, Pulse Music severs all outbound cellular sockets. Search and playback query strictly your locally cached tracks and downloaded albums via Room SQLite, guaranteeing zero data usage on flights, subways, or travels.</p>
+            <div class="faq-answer" id="faq-answer-3" role="region" aria-labelledby="faq-question-3">
+              <p>Pure Offline Mode turns off online search and streaming and limits playback to locally cached tracks and downloaded albums in Room SQLite. It is not a network kill switch: the app may still perform update checks or fetch remote configuration and kill-switch data unless you disable those features or use Android's network controls.</p>
             </div>
           </div>
 
           <div class="faq-item">
-            <button class="faq-question">
+            <button class="faq-question" id="faq-question-4" type="button" aria-expanded="false" aria-controls="faq-answer-4">
               <span>What is Pulse JAM and how does sync listening work?</span>
-              <span class="faq-toggle">+</span>
+              <span class="faq-toggle" aria-hidden="true">+</span>
             </button>
-            <div class="faq-answer">
-              <p>Pulse JAM lets you host or join live listening rooms. Powered by Firebase Realtime Database with buffer-aware drift correction (&lt;150ms auto-seek), host and listeners hear the exact same song timestamp together. Guests can vote-skip democratically with 50% consensus.</p>
+            <div class="faq-answer" id="faq-answer-4" role="region" aria-labelledby="faq-question-4">
+              <p>Pulse JAM lets you host or join live listening rooms. It uses Firebase Realtime Database with buffer-aware drift correction (&lt;150ms auto-seek) so the host and listeners hear the same song timestamp. Guests can vote-skip with a 50% consensus. Room state is stored in Firebase while the room exists and may persist until the host ends or cleans up the room.</p>
             </div>
           </div>
 
           <div class="faq-item">
-            <button class="faq-question">
+            <button class="faq-question" id="faq-question-5" type="button" aria-expanded="false" aria-controls="faq-answer-5">
               <span>Where does the high-fidelity audio stream from?</span>
-              <span class="faq-toggle">+</span>
+              <span class="faq-toggle" aria-hidden="true">+</span>
             </button>
-            <div class="faq-answer">
-              <p>Pulse Music aggregates YouTube Music (lossless Opus audio via ytm-kt), JioSaavn (up to 320 kbps high-definition CD quality), and SoundCloud (progressive streams). Auto mode dynamically routes to the highest-fidelity provider with seed-provider stickiness.</p>
+            <div class="faq-answer" id="faq-answer-5" role="region" aria-labelledby="faq-question-5">
+              <p>Pulse Music aggregates YouTube Music (Opus audio via ytm-kt), JioSaavn (up to 320 kbps), and SoundCloud (progressive streams) through unofficial provider integrations. Auto mode routes to the highest-fidelity available source with seed-provider stickiness; availability can change when providers update their services.</p>
             </div>
           </div>
 
           <div class="faq-item">
-            <button class="faq-question">
+            <button class="faq-question" id="faq-question-6" type="button" aria-expanded="false" aria-controls="faq-answer-6">
               <span>How do in-app updates work?</span>
-              <span class="faq-toggle">+</span>
+              <span class="faq-toggle" aria-hidden="true">+</span>
             </button>
-            <div class="faq-answer">
-              <p>Pulse Music features an integrated update checker (<code>AppUpdater.kt</code>) that periodically queries GitHub Releases. When a new version (e.g., v2.7.0) is published, you get a 1-tap download prompt to install the upgrade without losing your offline downloads or playlists.</p>
+            <div class="faq-answer" id="faq-answer-6" role="region" aria-labelledby="faq-question-6">
+              <p>Pulse Music has an integrated update checker (<code>AppUpdater.kt</code>) that periodically queries the GitHub Releases API. When a newer version (for example, v2.7.1) is published, you get a 1-tap download prompt. Android's package installer then asks you to confirm installation; your offline downloads and playlists are retained.</p>
             </div>
           </div>
         </div>
@@ -682,17 +711,17 @@
         <p class="section-desc">Take your music with you. Build your library. Listen your way.</p>
         
         <div class="download-actions">
-          <a href="#" class="btn btn-primary" id="bottom-download-btn">DOWNLOAD FOR ANDROID</a>
-          <a href="#" class="btn btn-secondary" id="bottom-github-btn">VIEW ON GITHUB</a>
+          <a href="https://github.com/chriz-3656/Pulse-Music/releases/latest" class="btn btn-primary" id="bottom-download-btn">DOWNLOAD FOR ANDROID</a>
+          <a href="https://github.com/chriz-3656/Pulse-Music" class="btn btn-secondary" id="bottom-github-btn">VIEW ON GITHUB</a>
         </div>
 
         <!-- Instant QR Code for Mobile Install -->
         <div class="qr-card">
-          <img src="assets/qr_download.svg" alt="Scan QR Code to Download APK" class="qr-code-img">
+          <img src="assets/qr_download.svg" alt="QR code linking to the latest Pulse Music release on GitHub" class="qr-code-img" width="110" height="110" loading="lazy" decoding="async">
           <div class="qr-info">
             <span class="qr-badge">POINT PHONE CAMERA</span>
             <h4>Instant Mobile Install</h4>
-            <p>Scan with your Android phone to download <strong>PulseMusic-v2.7.0.apk</strong> directly from GitHub Releases.</p>
+            <p>Scan with your Android phone to download the latest <strong>Pulse Music APK</strong> directly from GitHub Releases.</p>
           </div>
         </div>
       </div>
@@ -704,8 +733,11 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="#" class="logo-link">
-            <img src="assets/app_icon.png" alt="Pulse Logo" class="logo-icon" style="border-radius: 20%; object-fit: cover;">
+          <a href="./" class="logo-link" aria-label="Pulse Music home">
+            <picture>
+              <source type="image/webp" srcset="assets/app_icon-64.webp 64w, assets/app_icon-192.webp 192w" sizes="32px">
+              <img src="assets/app_icon-64.png" alt="" class="logo-icon" width="32" height="32" decoding="async" style="border-radius: 20%; object-fit: cover;">
+            </picture>
             PULSE
           </a>
           <p>Music beyond silence.</p>
@@ -726,22 +758,23 @@
         <div class="footer-links">
           <h5>LINKS</h5>
           <ul>
-            <li><a href="#" id="footer-github-link">GitHub</a></li>
+            <li><a href="https://github.com/chriz-3656/Pulse-Music" id="footer-github-link">GitHub</a></li>
             <li><a href="privacy/">Privacy Policy</a></li>
             <li><a href="terms/">Terms of Service</a></li>
+            <li><a href="LICENSE.txt">GPL-3.0 License</a></li>
           </ul>
         </div>
       </div>
       
       <div class="footer-bottom">
         <div>
-          &copy; <span id="current-year"></span> Pulse Music. All rights reserved.<br>
+          &copy; <span id="current-year"></span> Pulse Music. Website source licensed under GPL-3.0.<br>
           <span style="color:var(--text-muted); font-size: 0.75rem; margin-top: 4px; display: inline-block;">
             An open source 3rd party streaming app. Developed by <a href="https://github.com/chriz-3656" target="_blank" rel="noopener noreferrer" style="color:var(--amber); text-decoration:underline;">chriz-3656</a>.
           </span>
         </div>
         <div class="footer-tech">
-          Pulse Music <span class="app-version">v2.7.0</span><br>
+          Pulse Music <span class="app-version">v2.7.1</span><br>
           Android Music Client
         </div>
       </div>
